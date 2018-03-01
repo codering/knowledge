@@ -1,0 +1,14 @@
+machine:
+  node:
+    version: 9.6.1
+  yarn:
+    version: 1.5.1
+
+deployment:
+  website:
+    branch: master
+    commands:
+      - git config --global user.email "codering@users.noreply.github.com"
+      - git config --global user.name "circleci"
+      - echo "machine github.com login codering password $GITHUB_TOKEN" > ~/.netrc
+      - cd website && yarn install && GIT_USER=codering USE_SSH=true yarn run publish-gh-pages
