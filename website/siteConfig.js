@@ -19,8 +19,8 @@ const siteConfig = {
   title: "Codering's Knowledge" /* title for your website */,
   tagline: 'A website for learning',
   url: 'https://codering.github.io' /* your website url */,
-  baseUrl: '/my-knowledge/' /* base url for your project */,
-  projectName: 'my-knowledge',
+  baseUrl: '/knowledge/' /* base url for your project */,
+  projectName: 'knowledge',
   algolia: {
     apiKey: "my-search-only-api-key-1234",
     indexName: "my-index-name"
@@ -60,14 +60,14 @@ const siteConfig = {
     new Date().getFullYear() +
     ' Codering',
   organizationName: 'codering', // or set an env variable ORGANIZATION_NAME
-  projectName: 'my-knowledge', // or set an env variable PROJECT_NAME
+  projectName: 'knowledge', // or set an env variable PROJECT_NAME
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks
     theme: 'default',
   },
   scripts: ['https://buttons.github.io/buttons.js'],
   // You may provide arbitrary config keys to be used as needed by your template.
-  repoUrl: 'https://github.com/codering/my-knowledge',
+  repoUrl: 'https://github.com/codering/knowledge',
 };
 
 module.exports = siteConfig;
