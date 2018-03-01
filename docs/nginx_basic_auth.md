@@ -11,13 +11,17 @@ ngx_http_auth_basic_module模块实现让访问者只有输入正确的用户密
 ## nginx basic auth指令
 
 语法:     auth_basic string | off;
+
 默认值:     auth_basic off;
+
 配置段:     http, server, location, limit_except
 
 默认表示不开启认证，后面如果跟上字符，这些字符会在弹窗中显示。
 
 语法:     auth_basic_user_file file;
+
 默认值:     —
+
 配置段:     http, server, location, limit_except
 
 用户密码文件，文件内容类似如下：
