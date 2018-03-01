@@ -1,0 +1,10 @@
+{
+  "docs": {
+    "Nginx": ["nginx_basic_auth"],
+    "Spring": [],
+    "JAVA": []
+  },
+  "docs-other": {
+    "First Category": []
+  }
+}
