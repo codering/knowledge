@@ -21,7 +21,12 @@ const siteConfig = {
   url: 'https://codering.github.io' /* your website url */,
   baseUrl: '/my-knowledge/' /* base url for your project */,
   projectName: 'my-knowledge',
+  algolia: {
+    apiKey: "my-search-only-api-key-1234",
+    indexName: "my-index-name"
+  },
   headerLinks: [
+    {search: true },
     {doc: 'nginx_basic_auth', label: 'Docs'},
   //  {doc: 'doc4', label: 'API'},
   //  {page: 'help', label: 'Help'},
