@@ -4,7 +4,7 @@ title: nginx用户认证配置（ Basic HTTP authentication）
 sidebar_label: nginx用户认证配置
 ---
 
-from [http://www.xiaoten.com/nginx-user-authentication-configuration.html](http://www.xiaoten.com/nginx-user-authentication-configuration.html)
+from http://www.xiaoten.com/nginx-user-authentication-configuration.html
 
 `ngx_http_auth_basic_module`模块实现让访问者只有输入正确的用户密码才允许访问web内容。web上的一些内容不想被其他人知道，但是又想让部分人看到。nginx的http auth模块以及Apache http auth都是很好的解决方案。
 

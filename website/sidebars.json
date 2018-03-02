@@ -1,6 +1,6 @@
 {
   "docs": {
-    "Nginx": ["nginx_basic_auth"],
+    "Nginx": ["nginx_basic_auth","uml_class_diagram_relationships"],
     "Spring": [],
     "JAVA": []
   },
