@@ -2,21 +2,21 @@
 <rss version="2.0">
     <channel>
         <title>Codering&apos;s Knowledge Blog</title>
-        <link>https://codering.github.io/blog</link>
+        <link>https://codering.github.io/knowledgeblog</link>
         <description>The best place to stay up-to-date with the latest Codering&apos;s Knowledge news and events.</description>
         <lastBuildDate>Thu, 01 Mar 2018 06:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>Feed for Node.js</generator>
         <image>
             <title>Codering&apos;s Knowledge Blog</title>
-            <url>https://codering.github.io/img/docusaurus.svg</url>
-            <link>https://codering.github.io/blog</link>
+            <url>https://codering.github.io/knowledgeimg/docusaurus.svg</url>
+            <link>https://codering.github.io/knowledgeblog</link>
         </image>
         <copyright>Copyright © 2018 Codering</copyright>
         <item>
             <title><![CDATA[首篇博文]]></title>
-            <link>https://codering.github.io/blog/2018/03/01/first-blog.html</link>
-            <guid>https://codering.github.io/blog/2018/03/01/first-blog.html</guid>
+            <link>https://codering.github.io/knowledgeblog/2018/03/01/first-blog.html</link>
+            <guid>https://codering.github.io/knowledgeblog/2018/03/01/first-blog.html</guid>
             <pubDate>Thu, 01 Mar 2018 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>这是我用docusaurus创建的首篇博文</p>
 ]]></description>

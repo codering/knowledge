@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://codering.github.io/blog</id>
+    <id>https://codering.github.io/knowledgeblog</id>
     <title>Codering&apos;s Knowledge Blog</title>
     <updated>2018-03-01T06:00:00Z</updated>
     <generator>Feed for Node.js</generator>
-    <link rel="alternate" href="https://codering.github.io/blog"/>
+    <link rel="alternate" href="https://codering.github.io/knowledgeblog"/>
     <subtitle>The best place to stay up-to-date with the latest Codering&apos;s Knowledge news and events.</subtitle>
-    <logo>https://codering.github.io/img/docusaurus.svg</logo>
+    <logo>https://codering.github.io/knowledgeimg/docusaurus.svg</logo>
     <rights>Copyright © 2018 Codering</rights>
     <entry>
         <title type="html"><![CDATA[首篇博文]]></title>
-        <id>https://codering.github.io/blog/2018/03/01/first-blog.html</id>
-        <link href="https://codering.github.io/blog/2018/03/01/first-blog.html">
+        <id>https://codering.github.io/knowledgeblog/2018/03/01/first-blog.html</id>
+        <link href="https://codering.github.io/knowledgeblog/2018/03/01/first-blog.html">
         </link>
         <updated>2018-03-01T06:00:00Z</updated>
         <summary type="html"><![CDATA[<p>这是我用docusaurus创建的首篇博文</p>
