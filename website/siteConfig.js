@@ -19,7 +19,7 @@ const siteConfig = {
   title: "Codering's Knowledge" /* title for your website */,
   tagline: 'A website for learning',
   url: 'https://codering.github.io' /* your website url */,
-  baseUrl: '/knowledge' /* base url for your project */,
+  baseUrl: '/knowledge/' /* base url for your project */,
   projectName: 'knowledge',
   algolia: {
     apiKey: "my-search-only-api-key-1234",
