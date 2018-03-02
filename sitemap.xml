@@ -5,4 +5,5 @@
 <url> <loc>https://codering.github.io/users.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> <xhtml:link rel="alternate" hreflang="en" href="https://codering.github.io/en/users.html" /> </url>
 <url> <loc>https://codering.github.io/blog/2018/03/01/first-blog.html</loc> <changefreq>weekly</changefreq> <priority>0.3</priority> </url>
 <url> <loc>https://codering.github.io/docs/nginx_basic_auth.html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://codering.github.io/docs/nginx_basic_auth.html" /> </url>
+<url> <loc>https://codering.github.io/docs/uml_class_diagram_relationships.html</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://codering.github.io/docs/uml_class_diagram_relationships.html" /> </url>
 </urlset>
