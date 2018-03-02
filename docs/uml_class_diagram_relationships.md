@@ -84,7 +84,3 @@ from http://blog.csdn.net/tianhai110/article/details/6339565
 下面这张UML图，比较形象地展示了各种类图关系：
 
 ![summary](/knowledge/img/doc/summary.gif)
-
-### 更多参考
-
-- [class-diagram-relationships](https://creately.com/blog/diagrams/class-diagram-relationships/)

@@ -1,6 +1,6 @@
 ---
 id: nginx_basic_auth
-title: nginx用户认证配置（ Basic HTTP authentication）
+title: nginx用户认证配置
 sidebar_label: nginx用户认证配置
 ---
 
