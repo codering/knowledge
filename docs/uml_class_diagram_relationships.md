@@ -14,7 +14,7 @@ from http://blog.csdn.net/tianhai110/article/details/6339565
 
 【箭头指向】：带三角箭头的实线，箭头指向父类
 
-![Generalization](/img/doc/generalization.gif)
+![Generalization](/knowledge/img/doc/generalization.gif)
 
 ### 实现(Realization)
 
@@ -22,7 +22,7 @@ from http://blog.csdn.net/tianhai110/article/details/6339565
 
 【箭头指向】：带三角箭头的虚线，箭头指向接口
 
-![Realization](/img/doc/realization.gif)
+![Realization](/knowledge/img/doc/realization.gif)
 
 ### 关联(Association)
 
@@ -34,11 +34,11 @@ from http://blog.csdn.net/tianhai110/article/details/6339565
 
 【箭头及指向】：带普通箭头的实心线，指向被拥有者
 
-![Association](/img/doc/association.gif)
+![Association](/knowledge/img/doc/association.gif)
 
 上图中，老师与学生是双向关联，老师有多名学生，学生也可能有多名老师。但学生与某课程间的关系为单向关联，一名学生可能要上多门课程，课程是个抽象的东西他不拥有学生。
 
-![Association2](/img/doc/association2.gif)
+![Association2](/knowledge/img/doc/association2.gif)
 
 上图为自身关联
  
@@ -52,7 +52,7 @@ from http://blog.csdn.net/tianhai110/article/details/6339565
 
 【箭头及指向】：带空心菱形的实心线，菱形指向整体
 
-![Aggregation](/img/doc/aggregation.gif)
+![Aggregation](/knowledge/img/doc/aggregation.gif)
 
 ### 组合(Composition)
 
@@ -62,7 +62,7 @@ from http://blog.csdn.net/tianhai110/article/details/6339565
 
 【箭头及指向】：带实心菱形的实线，菱形指向整体
 
-![Composition](/img/doc/composition.gif)
+![Composition](/knowledge/img/doc/composition.gif)
 
 
 ### 依赖(Dependency)
@@ -73,7 +73,7 @@ from http://blog.csdn.net/tianhai110/article/details/6339565
 
 【箭头及指向】：带箭头的虚线，指向被使用者
 
- ![Dependency](/img/doc/dependency.gif)
+ ![Dependency](/knowledge/img/doc/dependency.gif)
 
 ### 各种关系的强弱顺序：
 
@@ -83,7 +83,7 @@ from http://blog.csdn.net/tianhai110/article/details/6339565
 
 下面这张UML图，比较形象地展示了各种类图关系：
 
-![summary](/img/doc/summary.gif)
+![summary](/knowledge/img/doc/summary.gif)
 
 ### 更多参考
 
