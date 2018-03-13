@@ -22,8 +22,8 @@ const siteConfig = {
   baseUrl: '/knowledge/' /* base url for your project */,
   projectName: 'knowledge',
   algolia: {
-    apiKey: "my-search-only-api-key-1234",
-    indexName: "my-index-name"
+    apiKey: "35661468ccd73ff72b970d01662bde7b",
+    indexName: "codering"
   },
   headerLinks: [
     {search: true },
@@ -65,7 +65,7 @@ const siteConfig = {
     // Highlight.js theme to use for syntax highlighting in code blocks
     theme: 'default',
   },
-  scripts: ['https://buttons.github.io/buttons.js'],
+  scripts: ['https://buttons.github.io/buttons.js','https://code.jquery.com/jquery-1.12.4.min.js'],
   // You may provide arbitrary config keys to be used as needed by your template.
   repoUrl: 'https://github.com/codering/knowledge',
 };

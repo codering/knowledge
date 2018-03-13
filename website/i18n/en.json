@@ -4,7 +4,7 @@
     "next": "Next",
     "previous": "Previous",
     "tagline": "A website for learning",
-    "nginx_basic_auth": "nginx用户认证配置（ Basic HTTP authentication）",
+    "nginx_basic_auth": "nginx用户认证配置",
     "nginx用户认证配置": "nginx用户认证配置",
     "uml_class_diagram_relationships": "UML类图几种关系的总结",
     "UML类图关系": "UML类图关系",
