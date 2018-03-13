@@ -75,11 +75,11 @@ from http://blog.csdn.net/tianhai110/article/details/6339565
 
  ![Dependency](/knowledge/img/doc/dependency.gif)
 
-## 各种关系的强弱顺序：
+## 强弱顺序(Strong and week relationship)
 
-`泛化= 实现> 组合> 聚合> 关联> 依赖`
+`泛化 = 实现 > 组合 > 聚合 > 关联 > 依赖`
 
-## 总示例图
+## 总示例图(Summary)
 
 下面这张UML图，比较形象地展示了各种类图关系：
 
