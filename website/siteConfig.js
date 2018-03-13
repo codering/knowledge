@@ -34,6 +34,7 @@ const siteConfig = {
   //  {page: 'about-slash', label: 'About/'},
   ],
   users,
+  onPageNav: 'separate',
   /* path to images for header/footer */
   headerIcon: 'img/docusaurus.svg',
   footerIcon: 'img/docusaurus.svg',
