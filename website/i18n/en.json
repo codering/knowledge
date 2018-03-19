@@ -4,6 +4,8 @@
     "next": "Next",
     "previous": "Previous",
     "tagline": "A website for learning",
+    "logrotate_usage": "logrotate日志轮转配置文档",
+    "logrotate配置": "logrotate配置",
     "nginx_basic_auth": "nginx用户认证配置",
     "nginx用户认证配置": "nginx用户认证配置",
     "uml_class_diagram_relationships": "UML类图几种关系的总结",
