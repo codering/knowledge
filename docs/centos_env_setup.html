@@ -40,24 +40,24 @@
 <p>如果发现更新源地址不可用，去 /etc/yum.repo.d目下修改源的配置(或自己新建一个xxx.repo文件)，再执行。</p>
 <pre><code class="hljs"><span class="hljs-section">[base]</span>
 <span class="hljs-attr">name</span>=CentOS-<span class="hljs-variable">$releasever</span> - Base
-<span class="hljs-attr">baseurl</span>=http://<span class="hljs-number">10.1</span>.<span class="hljs-number">20.102</span>/centos/<span class="hljs-variable">$releasever</span>/os/<span class="hljs-variable">$basearch</span>/
+<span class="hljs-attr">baseurl</span>=http://<span class="hljs-number">10.10</span>.<span class="hljs-number">10.1</span>/centos/<span class="hljs-variable">$releasever</span>/os/<span class="hljs-variable">$basearch</span>/
 <span class="hljs-attr">enable</span>=<span class="hljs-number">1</span>
 <span class="hljs-attr">gpgcheck</span>=<span class="hljs-number">0</span>
-<span class="hljs-attr">gpgkey</span>=http://<span class="hljs-number">10.1</span>.<span class="hljs-number">20.102</span>/centos/RPM-GPG-KEY-CentOS-<span class="hljs-number">6</span>
+<span class="hljs-attr">gpgkey</span>=http://<span class="hljs-number">10.10</span>.<span class="hljs-number">10.1</span>/centos/RPM-GPG-KEY-CentOS-<span class="hljs-number">6</span>
 <span class="hljs-section">
 [updates]</span>
 <span class="hljs-attr">name</span>=CentOS-<span class="hljs-variable">$releasever</span> - Updates
-<span class="hljs-attr">baseurl</span>=http://<span class="hljs-number">10.1</span>.<span class="hljs-number">20.102</span>/centos/<span class="hljs-variable">$releasever</span>/updates/<span class="hljs-variable">$basearch</span>/
+<span class="hljs-attr">baseurl</span>=http://<span class="hljs-number">10.10</span>.<span class="hljs-number">10.1</span>/centos/<span class="hljs-variable">$releasever</span>/updates/<span class="hljs-variable">$basearch</span>/
 <span class="hljs-attr">enable</span>=<span class="hljs-number">1</span>
 <span class="hljs-attr">gpgcheck</span>=<span class="hljs-number">0</span>
-<span class="hljs-attr">gpgkey</span>=http://<span class="hljs-number">10.1</span>.<span class="hljs-number">20.102</span>/centos/RPM-GPG-KEY-CentOS-<span class="hljs-number">6</span>
+<span class="hljs-attr">gpgkey</span>=http://<span class="hljs-number">10.10</span>.<span class="hljs-number">10.1</span>/centos/RPM-GPG-KEY-CentOS-<span class="hljs-number">6</span>
 <span class="hljs-section">
 [extras]</span>
 <span class="hljs-attr">name</span>=CentOS-<span class="hljs-variable">$releasever</span> - Extras
-<span class="hljs-attr">baseurl</span>=http://<span class="hljs-number">10.1</span>.<span class="hljs-number">20.102</span>/centos/<span class="hljs-variable">$releasever</span>/extras/<span class="hljs-variable">$basearch</span>/
+<span class="hljs-attr">baseurl</span>=http://<span class="hljs-number">10.10</span>.<span class="hljs-number">10.1</span>/centos/<span class="hljs-variable">$releasever</span>/extras/<span class="hljs-variable">$basearch</span>/
 <span class="hljs-attr">enable</span>=<span class="hljs-number">1</span>
 <span class="hljs-attr">gpgcheck</span>=<span class="hljs-number">0</span>
-<span class="hljs-attr">gpgkey</span>=http://<span class="hljs-number">10.1</span>.<span class="hljs-number">20.102</span>/centos/RPM-GPG-KEY-CentOS-<span class="hljs-number">6</span>
+<span class="hljs-attr">gpgkey</span>=http://<span class="hljs-number">10.10</span>.<span class="hljs-number">10.1</span>/centos/RPM-GPG-KEY-CentOS-<span class="hljs-number">6</span>
 
 </code></pre>
 <p>更新完成后，查看下系统及内核版本</p>
@@ -407,8 +407,8 @@ numChildren = 3
 -A INPUT -p icmp -j ACCEPT
 -A INPUT -i lo -j ACCEPT
 -A INPUT -m state --state NEW -m tcp -p tcp -s 10.0.0.0/8 --dport 22 -j ACCEPT
--A INPUT -s 10.72.32.0/24 -j ACCEPT
--A INPUT -s 10.72.21.0/24 -j ACCEPT
+-A INPUT -s 10.10.32.0/24 -j ACCEPT
+-A INPUT -s 10.10.21.0/24 -j ACCEPT
 -A INPUT -j REJECT --reject-with icmp-host-prohibited
 -A FORWARD -j REJECT --reject-with icmp-host-prohibited
 COMMIT
@@ -436,8 +436,8 @@ num  target     prot opt <span class="hljs-built_in">source</span>              
 4    ACCEPT     icmp --  0.0.0.0/0            0.0.0.0/0
 5    ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0
 6    ACCEPT     tcp  --  10.0.0.0/8           0.0.0.0/0           state NEW tcp dpt:22
-7    ACCEPT     all  --  10.72.32.0/24        0.0.0.0/0
-8    ACCEPT     all  --  10.72.21.0/24        0.0.0.0/0
+7    ACCEPT     all  --  10.10.32.0/24        0.0.0.0/0
+8    ACCEPT     all  --  10.10.21.0/24        0.0.0.0/0
 9    REJECT     all  --  0.0.0.0/0            0.0.0.0/0           reject-with icmp-host-prohibited
 </code></pre>
 </span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="uml_class_diagram_relationships.html">← UML类图几种关系的总结</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#prepare">准备(prepare)</a></li><li><a href="#system-update">更新系统(system_update)</a></li><li><a href="#nginx">安装nginx</a><ul class="toc-headings"><li><a href="#gccnginx-gcc">安装gcc(nginx_gcc)</a></li><li><a href="#nginx-nginx-unzip">解压nginx及其依赖模块(nginx_unzip)</a></li><li><a href="#nginx-configure">编译与安装(nginx_configure)</a></li><li><a href="#link-nginx-sbin">添加软连接(link_nginx_sbin)</a></li></ul></li><li><a href="#redis">安装redis</a><ul class="toc-headings"><li><a href="#gccredis-gcc">安装gcc(redis_gcc)</a></li><li><a href="#redis-unzip">解压(redis_unzip)</a></li><li><a href="#redis-make">编译(redis_make)</a></li><li><a href="#redis-init">安装及初始化配置(redis_init)</a></li><li><a href="#ipredis-bind">修改绑定IP(redis_bind)</a></li></ul></li><li><a href="#redis-requirepass">设置密码(redis_requirepass)</a><ul class="toc-headings"><li><a href="#redis-commands">启动与停止(redis_commands)</a></li></ul></li><li><a href="#java">安装java</a><ul class="toc-headings"><li><a href="#openjdk">卸载系统自带的openjdk</a></li><li><a href="#unzip-jdk">解压(unzip_jdk)</a></li><li><a href="#set-java-env-vars">设置环境变量(set_java_env_vars)</a></li><li><a href="#jce">修改JCE</a></li></ul></li><li><a href="#zookeeper">安装zookeeper</a><ul class="toc-headings"><li><a href="#unzip-zk">解压(unzip_zk)</a></li><li><a href="#zoocfg">添加配置文件zoo.cfg</a></li><li><a href="#zk-datadir">修改数据存储路径(zk_dataDir)</a></li><li><a href="#zk-commands">启动/停止/重启(zk_commands)</a></li><li><a href="#zk-client">客户端连接(zk_client)</a></li></ul></li><li><a href="#iptables">防火墙iptables修改</a><ul class="toc-headings"><li><a href="#iptables-conf">配置文件路径(iptables_conf)</a></li><li><a href="#iptables-ports">添加常用端口控制(iptables_ports)</a></li><li><a href="#iptables-commands">常用命令(iptables_commands)</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer" style="display:none;"></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
