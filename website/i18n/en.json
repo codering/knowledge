@@ -4,6 +4,8 @@
     "next": "Next",
     "previous": "Previous",
     "tagline": "A website for learning",
+    "centos_env_setup": "centos环境搭建",
+    "centos环境搭建": "centos环境搭建",
     "logrotate_usage": "logrotate日志轮转配置文档",
     "logrotate配置": "logrotate配置",
     "nginx_basic_auth": "nginx用户认证配置",
@@ -13,8 +15,10 @@
     "Docs": "Docs",
     "Blog": "Blog",
     "Nginx": "Nginx",
+    "UML": "UML",
     "Spring": "Spring",
     "JAVA": "JAVA",
+    "Other": "Other",
     "First Category": "First Category"
   },
   "pages-strings": {

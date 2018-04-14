@@ -1,8 +1,10 @@
 {
   "docs": {
-    "Nginx": ["nginx_basic_auth","uml_class_diagram_relationships","logrotate_usage"],
+    "Nginx": ["nginx_basic_auth","logrotate_usage"],
+    "UML": ["uml_class_diagram_relationships"],
     "Spring": [],
-    "JAVA": []
+    "JAVA": [],
+    "Other": ["centos_env_setup"]
   },
   "docs-other": {
     "First Category": []
