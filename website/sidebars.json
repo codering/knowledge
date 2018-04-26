@@ -4,7 +4,7 @@
     "UML": ["uml_class_diagram_relationships"],
     "Spring": [],
     "JAVA": [],
-    "Other": ["centos_env_setup"]
+    "Other": ["centos_env_setup", "file_line_ending"]
   },
   "docs-other": {
     "First Category": []
