@@ -6,9 +6,12 @@ sidebar_label: 不同系统的文件换行符
 
 The line terminator expected for each file format is:
 
-unix	LF only (each line ends with an LF character).	Unix based systems and Mac OS X and later.
-dos	CRLF (each line ends with CR then LF).	DOS and Windows.
-mac	CR only (each line ends with a CR character).	Mac OS version 9 and earlier
+- unix	LF only (each line ends with an LF character).	Unix based systems and Mac OS X and later.
+
+- dos	CRLF (each line ends with CR then LF).	DOS and Windows.
+
+- mac	CR only (each line ends with a CR character).	Mac OS version 9 and earlier
+
 CR is carriage return (return cursor to left margin), which is Ctrl-M or ^M or hex 0D.
 
 LF is linefeed (move cursor down), which is Ctrl-J or ^J or hex 0A. Sometimes, LF is written as NL (newline).
