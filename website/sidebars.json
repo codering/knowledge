@@ -4,6 +4,7 @@
     "UML": ["uml_class_diagram_relationships"],
     "Spring": [],
     "JAVA": [],
+    "DDD": ["forum_domain_model", "aggregate_design", "aggregate_comunication","ddd_steps"],
     "Other": ["centos_env_setup", "file_line_ending"]
   },
   "docs-other": {
