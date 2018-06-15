@@ -136,7 +136,8 @@ du -h --max-depth=1 /path
 ```
 具体如下所示：
 ```sh
-root@ubuntu4146:~# du -h --max-depth=1 /data/  
+du -h --max-depth=1 /data/ 
+ 
 1.1G    /data/gitlabDataa  
 8.0K    /data/test  
 241G    /data/gitlabData  
@@ -148,7 +149,8 @@ root@ubuntu4146:~# du -h --max-depth=1 /data/
 
 我们发现  /data/home/ 目录占用最多，因此我们可以继续看那个目录占用的最多，如下所示：
 ```sh
-root@ubuntu4146:/data/home# du -h --max-depth=1 /data/home/  
+du -h --max-depth=1 /data/home/  
+
 141G    /data/home/wzm  
 62G /data/home/lwc  
 421G    /data/home/hcy  
@@ -158,6 +160,6 @@ root@ubuntu4146:/data/home# du -h --max-depth=1 /data/home/
 122G    /data/home/sjq  
 4.1G    /data/home/ljs  
 6.7G    /data/home/ywm  
-809G    /data/home/  
-root@ubuntu4146:/data/home#   
-```
+809G    /data/home/ 
+```   
+

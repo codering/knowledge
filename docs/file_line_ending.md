@@ -1,7 +1,7 @@
 ---
 id: file_line_ending
-title: 不同系统的文件换行符
-sidebar_label: 不同系统的文件换行符
+title: 文件换行符
+sidebar_label: 文件换行符
 ---
 
 The line terminator expected for each file format is:

@@ -33,8 +33,8 @@ const siteConfig = {
     {blog: true, label: 'Blog'},
   //  {page: 'about-slash', label: 'About/'},
   ],
+  noIndex: false,
   users,
-  onPageNav: 'separate',
   /* path to images for header/footer */
   headerIcon: 'img/docusaurus.svg',
   footerIcon: 'img/docusaurus.svg',
@@ -56,19 +56,28 @@ const siteConfig = {
     ]
   },*/
   // This copyright info is used in /core/Footer.js and blog rss/atom feeds.
-  copyright:
-    'Copyright © ' +
-    new Date().getFullYear() +
-    ' Codering',
+  copyright: 'Copyright © ' + new Date().getFullYear() + ' Codering',
   organizationName: 'codering', // or set an env variable ORGANIZATION_NAME
   projectName: 'knowledge', // or set an env variable PROJECT_NAME
+  usePrism: ['jsx'],
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks
-    theme: 'default',
+    theme: 'atom-one-dark',
   },
-  scripts: ['https://buttons.github.io/buttons.js','https://code.jquery.com/jquery-1.12.4.min.js'],
+  scripts: [
+    'https://buttons.github.io/buttons.js',
+    'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js',
+    '/js/code-blocks-buttons.js'
+  ],
+  stylesheets: ['/css/code-blocks-buttons.css'],
   // You may provide arbitrary config keys to be used as needed by your template.
   repoUrl: 'https://github.com/codering/knowledge',
+  onPageNav: 'separate',
+  cleanUrl: true,
+  scrollToTop: true,
+  scrollToTopOptions: {
+    zIndex: 100,
+  },
 };
 
 module.exports = siteConfig;

@@ -6,7 +6,7 @@ sidebar_label: logrotate配置
 
 from http://blog.163.com/bull_linux/blog/static/2138811422013101334544349/
 
-## 基本用法(basic_usage)
+## 基本用法
 
 - 使用：
     logrotate CONF_FILE+
@@ -44,7 +44,7 @@ from http://blog.163.com/bull_linux/blog/static/2138811422013101334544349/
     logrotate会读取每一个配置文件，配置文件中可对global和具体log文件配置。
     本地配置(log文件配置)覆盖global配置，后来的配置覆盖先前的配置。
 
-## 示例(example)
+## 示例
 
 ```sh
        # sample logrotate configuration file            注释行
@@ -101,7 +101,7 @@ from http://blog.163.com/bull_linux/blog/static/2138811422013101334544349/
 ```
 =====================================================
 
-## 详细选项解释(options)
+## 详细选项解释
 
 - rotate COUNT
 

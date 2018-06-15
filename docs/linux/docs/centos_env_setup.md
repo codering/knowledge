@@ -4,7 +4,7 @@ title: centos环境搭建
 sidebar_label: centos环境搭建
 ---
 
-## 准备(prepare)
+## 准备
 
 本次搭建遵循以下规则：
 - 安装包从官网下载，尽量选择稳定版本
@@ -30,8 +30,7 @@ redis，目前选择的是 3.2.x，最新版是4.x.x
 zookeeper, 目前用的3.4.x
 - [zookeeper](https://zookeeper.apache.org/releases.html)
 
-## 更新系统(system_update)
-  
+## 更新系统  
 ```shell
 yum update
 ```
@@ -81,13 +80,13 @@ Linux localhost 2.6.32-642.el6.x86_64 #1 SMP Tue May 10 17:27:01 UTC 2016 x86_64
 
 ## 安装nginx
 
-### 安装gcc(nginx_gcc)
+### 安装gcc
 
 ```sh
 yum install gcc gcc-c++
 ```
 
-### 解压nginx及其依赖模块(nginx_unzip)
+### 解压nginx及其依赖模块
 
 ```sh
 cd /usr/local/src
@@ -99,7 +98,7 @@ tar zxvf naxsi-0.55.3.tar.gz
 
 ```
 
-### 编译与安装(nginx_configure)
+### 编译与安装
 
 ```sh
 cd nginx-1.12.2
@@ -166,7 +165,7 @@ drwx------ 2 nobody root 4096 3月  23 14:46 uwsgi_temp
 
 ```
 
-### 添加软连接(link_nginx_sbin)
+### 添加软连接
 
 如果你指定了`--sbin-path`，这步可选。
 
@@ -177,18 +176,18 @@ ln -s /usr/local/nginx/sbin/nginx /usr/local/sbin/nginx
 
 ## 安装redis
 
-### 安装gcc(redis_gcc)
+### 安装gcc
 ```sh
 yum install gcc
 ```
 
-### 解压(redis_unzip)
+### 解压
 ```sh
 cd /usr/local/src
 tar zxvf redis-3.2.11.tar.gz
 ```
 
-### 编译(redis_make)
+### 编译
 ```sh
 cd redis-3.2.11
 make MALLOC=libc # 如果已安装jemalloc，直接执行make
@@ -196,7 +195,7 @@ make install
 ```
 这里注意`make`时指定了`MALLOC`参数，因为redis默认的内存管理策略是`jemalloc`, 如果没有装这个，请改成`libc`.
 
-### 安装及初始化配置(redis_init)
+### 安装及初始化配置
 ```sh
 cd utils # 进入redis源码中的utils目录
 ./install_server.sh #执行后会有交互性提示，让你选择路径配置文件路径及端口等，如下
@@ -227,7 +226,7 @@ drwxr-xr-x 3 root root 4096 3月  23 16:19 db
 drwxr-xr-x 2 root root 4096 3月  23 16:19 log
 ```
 
-### 修改绑定IP(redis_bind)
+### 修改绑定IP
 
 `注：这步可以与下面的‘设置密码’一起操作，都是同一个配置文件`
 
@@ -268,7 +267,7 @@ bind 127.0.0.1 192.168.20.200
 
 ```
 
-## 设置密码(redis_requirepass)
+## 设置密码
 
 redis默认情况下，客户端连接是不需要密码的，只要ip和端口正确就可以连接。安全考虑，需设置一个密码，假设为123456，如下
 ```sh
@@ -297,7 +296,7 @@ requirepass 123456
 
 ```
 
-### 启动与停止(redis_commands)
+### 启动与停止
 
 redis的可执行文件默认是在`/usr/local/bin`中，因此可以直接使用
 
@@ -332,13 +331,13 @@ yum -y remove java-1.6.0-openjdk-1.6.0.41-1.13.13.1.el6_8.x86_64
 yum -y remove java-1.7.0-openjdk-1.7.0.171-2.6.13.0.el6_9.x86_64
 ```
 
-### 解压(unzip_jdk)
+### 解压
 ```sh
 # 解压到/opt目录
 tar zxvf jdk-8u131-linux-x64.tar.gz -C /opt
 ```
 
-### 设置环境变量(set_java_env_vars)
+### 设置环境变量
 ```sh
 #编辑当前用户主目录下的`.bash_profile`文件
 vi ~/.bash_profile
@@ -398,7 +397,7 @@ which java
 
 如果zookeeper单独安装在一台服务器上，为了方便，我直接用系统自带的openjdk，没用oracle jdk。
 
-### 解压(unzip_zk)
+### 解压
 ```sh
 # 解压到/opt
 tar zxvf zookeeper-3.4.10.tar.gz -C /opt
@@ -413,7 +412,7 @@ cp zoo_sample.cfg zoo.cfg
 vi zoo.cfg
 ```
 
-### 修改数据存储路径(zk_dataDir)
+### 修改数据存储路径
 查找`dataDir`,修改如下
 ```sh
 # the directory where the snapshot is stored.
@@ -423,14 +422,14 @@ dataDir=/opt/zookeeper-3.4.10/snapshot
 
 ```
 
-### 启动/停止/重启(zk_commands)
+### 启动/停止/重启
 ```sh
 zkServer.sh start
 zkServer.sh stop
 zkServer.sh restart
 ```
 
-### 客户端连接(zk_client)
+### 客户端连接
 ```sh
 # 连接zk服务端，如果是远程连接，请换成远程服务器ip
 zkCli.sh -server 127.0.0.1:2181
@@ -469,11 +468,11 @@ numChildren = 3
 
 开启防火墙后，有些软件的端口是无法访问，需要自己手动添加端口控制
 
-### 配置文件路径(iptables_conf)
+### 配置文件路径
 
 `/etc/sysconfig/iptables`
 
-### 添加常用端口控制(iptables_ports)
+### 添加常用端口控制
 ```sh
 vi /etc/sysconfig/iptables
 ```
@@ -504,7 +503,7 @@ COMMIT
 service iptables restart
 ```
 
-### 常用命令(iptables_commands)
+### 常用命令
 ```sh
 #启用
 service iptables start

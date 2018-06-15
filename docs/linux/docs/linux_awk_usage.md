@@ -52,15 +52,20 @@ awk -f awk-script-file input-file(s)
 ## 入门实例
 假设last -n 5的输出如下
 ```sh
-[root@www ~]# last -n 5 <==仅取出前五行
+last -n 5 <==仅取出前五行
+
 root     pts/1   192.168.1.100  Tue Feb 10 11:21   still logged in
 root     pts/1   192.168.1.100  Tue Feb 10 00:46 - 02:28  (01:41)
 root     pts/1   192.168.1.100  Mon Feb  9 11:41 - 18:30  (06:48)
 dmtsai   pts/1   192.168.1.100  Mon Feb  9 11:41 - 11:41  (00:00)
 root     tty1                   Fri Sep  5 14:09 - 14:10  (00:01)
+```
+
 如果只是显示最近登录的5个帐号
 
-#last -n 5 | awk  '{print $1}'
+```sh
+last -n 5 | awk  '{print $1}'
+
 root
 root
 root
@@ -72,7 +77,8 @@ awk工作流程是这样的：读入有'\n'换行符分割的一条记录，然�
 
 如果只是显示/etc/passwd的账户
 ```sh
-#cat /etc/passwd |awk  -F ':'  '{print $1}'  
+cat /etc/passwd |awk  -F ':'  '{print $1}'  
+
 root
 daemon
 bin
@@ -85,7 +91,8 @@ sys
 
 如果只是显示/etc/passwd的账户和账户对应的shell,而账户与shell之间以tab键分割
 ```sh
-#cat /etc/passwd |awk  -F ':'  '{print $1"\t"$7}'
+cat /etc/passwd |awk  -F ':'  '{print $1"\t"$7}'
+
 root    /bin/bash
 daemon  /bin/sh
 bin     /bin/sh
@@ -96,6 +103,7 @@ sys     /bin/sh
 
 ```sh
 cat /etc/passwd |awk  -F ':'  'BEGIN {print "name,shell"}  {print $1","$7} END {print "blue,/bin/nosh"}'
+
 name,shell
 root,/bin/bash
 daemon,/bin/sh
@@ -109,7 +117,8 @@ awk工作流程是这样的：先执行BEGING，然后读取文件，读入有/n
 
 搜索/etc/passwd有root关键字的所有行
 ```sh
-#awk -F: '/root/' /etc/passwd
+awk -F: '/root/' /etc/passwd
+
 root:x:0:0:root:/root:/bin/bash
 ```
 
@@ -119,7 +128,8 @@ root:x:0:0:root:/root:/bin/bash
 
 搜索/etc/passwd有root关键字的所有行，并显示对应的shell
 ```sh
-# awk -F: '/root/{print $7}' /etc/passwd             
+awk -F: '/root/{print $7}' /etc/passwd 
+
 /bin/bash
 ```
 这里指定了 action `{print $7}`
@@ -144,7 +154,8 @@ RS                 控制记录分隔符
 
 统计/etc/passwd:文件名，每行的行号，每行的列数，对应的完整行内容:
 ```sh
-#awk  -F ':'  '{print "filename:" FILENAME ",linenumber:" NR ",columns:" NF ",linecontent:"$0}' /etc/passwd
+awk  -F ':'  '{print "filename:" FILENAME ",linenumber:" NR ",columns:" NF ",linecontent:"$0}' /etc/passwd
+
 filename:/etc/passwd,linenumber:1,columns:7,linecontent:root:x:0:0:root:/root:/bin/bash
 filename:/etc/passwd,linenumber:2,columns:7,linecontent:daemon:x:1:1:daemon:/usr/sbin:/bin/sh
 filename:/etc/passwd,linenumber:3,columns:7,linecontent:bin:x:2:2:bin:/bin:/bin/sh
@@ -154,7 +165,7 @@ filename:/etc/passwd,linenumber:4,columns:7,linecontent:sys:x:3:3:sys:/dev:/bin/
 使用printf替代print,可以让代码更加简洁，易读
 
 ```sh
- awk  -F ':'  '{printf("filename:%10s,linenumber:%s,columns:%s,linecontent:%s\n",FILENAME,NR,NF,$0)}' /etc/passwd
+awk  -F ':'  '{printf("filename:%10s,linenumber:%s,columns:%s,linecontent:%s\n",FILENAME,NR,NF,$0)}' /etc/passwd
 ```
 
 ## print和printf
@@ -174,6 +185,7 @@ printf函数，其用法和c语言中printf基本相似,可以格式化字符串
 下面统计/etc/passwd的账户人数
 ```sh
 awk '{count++;print $0;} END{print "user count is ", count}' /etc/passwd
+
 root:x:0:0:root:/root:/bin/bash
 ......
 user count is  40
@@ -183,6 +195,7 @@ count是自定义变量。之前的action{}里都是只有一个print,其实prin
 这里没有初始化count，虽然默认是0，但是妥当的做法还是初始化为0:
 ```sh
 awk 'BEGIN {count=0;print "[start]user count is ", count} {count=count+1;print $0;} END{print "[end]user count is ", count}' /etc/passwd
+
 [start]user count is  0
 root:x:0:0:root:/root:/bin/bash
 ...
@@ -192,12 +205,14 @@ root:x:0:0:root:/root:/bin/bash
 统计某个文件夹下的文件占用的字节数
 ```sh
 ls -l |awk 'BEGIN {size=0;} {size=size+$5;} END{print "[end]size is ", size}'
+
 [end]size is  8657198
 ```
 
 如果以M为单位显示:
 ```sh
 ls -l |awk 'BEGIN {size=0;} {size=size+$5;} END{print "[end]size is ", size/1024/1024,"M"}' 
+
 [end]size is  8.25889 M
 ```
 注意，统计不包括文件夹的子目录。
@@ -231,6 +246,7 @@ if (expression) {
 统计某个文件夹下的文件占用的字节数,过滤4096大小的文件(一般都是文件夹):
 ```sh
 ls -l |awk 'BEGIN {size=0;print "[start]size is ", size} {if($5!=4096){size=size+$5;}} END{print "[end]size is ", size/1024/1024,"M"}' 
+
 [end]size is  8.22339 M
 ```
 
@@ -245,6 +261,7 @@ awk中的循环语句同样借鉴于C语言，支持while、do/while、for、bre
 显示/etc/passwd的账户
 ```sh
 awk -F ':' 'BEGIN {count=0;} {name[count] = $1;count++;}; END{for (i = 0; i < NR; i++) print i, name[i]}' /etc/passwd
+
 0 root
 1 daemon
 2 bin

@@ -10,7 +10,7 @@ from http://www.xiaoten.com/nginx-user-authentication-configuration.html
 
 默认情况下nginx已经安装了`ngx_http_auth_basic_module`模块，如果不需要这个模块，可以加上 `-without-http_auth_basic_module`。
 
-## nginx basic auth指令
+## auth_basic指令
 
 语法: auth_basic string | off;
 
@@ -34,7 +34,7 @@ testuser2:password2:comment
 
 ```
 
-## nginx认证配置实例
+## 认证实例
 
 ```
 server{
@@ -52,15 +52,15 @@ server{
 }
 ```
 
-备注：一定要注意auth_basic_user_file路径，否则会不厌其烦的出现403。
+备注：`一定要注意auth_basic_user_file路径，否则会不厌其烦的出现403`。
 
-生成密码
+## 生成密码
 
 可以使用htpasswd，或者使用openssl
 
-```
-# printf "test:$(openssl passwd -crypt 123456)\n" >> conf/htpasswd
-# cat conf/htpasswd 
+```sh
+printf "test:$(openssl passwd -crypt 123456)\n" >> conf/htpasswd
+cat conf/htpasswd 
 test:xyJkVhXGAZ8tM
 
 ```
@@ -68,7 +68,7 @@ test:xyJkVhXGAZ8tM
 账号：test
 密码：123456
 
-重启 nginx
+## 重启 nginx
 
 ```
 # /usr/local/nginx-1.12.2/sbin/nginx -s reload

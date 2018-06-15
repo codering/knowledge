@@ -1,11 +1,22 @@
 {
   "docs": {
-    "Nginx": ["nginx_basic_auth","logrotate_usage"],
+    "Nginx": ["nginx_basic_auth"],
     "UML": ["uml_class_diagram_relationships"],
     "Spring": [],
     "JAVA": [],
-    "DDD": ["forum_domain_model", "aggregate_design", "aggregate_comunication","ddd_steps"],
-    "Other": ["centos_env_setup", "file_line_ending"]
+    "DDD": [
+      "ddd/docs/forum_domain_model", 
+      "ddd/docs/aggregate_design", 
+      "ddd/docs/aggregate_comunication",
+      "ddd/docs/ddd_steps"
+    ],
+    "Linux": [
+      "linux/docs/logrotate_usage",
+      "linux/docs/centos_env_setup",
+      "linux/docs/linux_awk_usage",
+      "linux/docs/linux_du_usage"
+    ],
+    "Other": ["file_line_ending"]
   },
   "docs-other": {
     "First Category": []
