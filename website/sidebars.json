@@ -14,7 +14,8 @@
       "linux/docs/logrotate_usage",
       "linux/docs/centos_env_setup",
       "linux/docs/linux_awk_usage",
-      "linux/docs/linux_du_usage"
+      "linux/docs/linux_du_usage",
+      "linux/docs/linux_sed_usage"
     ],
     "Other": ["file_line_ending"]
   },

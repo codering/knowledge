@@ -20,6 +20,8 @@
     "linux命令awk": "linux命令awk",
     "linux/docs/linux_du_usage": "linux命令du",
     "linux命令du": "linux命令du",
+    "linux/docs/linux_sed_usage": "linux命令sed",
+    "linux命令sed": "linux命令sed",
     "linux/docs/logrotate_usage": "logrotate日志轮转配置文档",
     "logrotate配置": "logrotate配置",
     "nginx_basic_auth": "nginx用户认证配置",
