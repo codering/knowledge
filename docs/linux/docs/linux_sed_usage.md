@@ -8,6 +8,9 @@ from https://blog.csdn.net/tp7309/article/details/51418412
 ## 使用grep正则提取字符串
 ```sh
 echo office365 | grep -P '\d+' -o
+```
+
+```sh
 find . -name "*.txt" | xargs grep -P 'regex' -o
 ```
 
