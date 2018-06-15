@@ -1,0 +1,52 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>DDD设计开发步骤 · Codering&#x27;s Knowledge</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="以下主要是汤雪华老师在jdon发表的看法："/><meta property="og:title" content="DDD设计开发步骤 · Codering&#x27;s Knowledge"/><meta property="og:type" content="website"/><meta property="og:url" content="https://codering.github.io/knowledge/index.html"/><meta property="og:description" content="以下主要是汤雪华老师在jdon发表的看法："/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/knowledge/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="alternate" type="application/atom+xml" href="https://codering.github.io/knowledge/blog/atom.xml" title="Codering&#x27;s Knowledge Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://codering.github.io/knowledge/blog/feed.xml" title="Codering&#x27;s Knowledge Blog RSS Feed"/><link rel="stylesheet" href="/css/code-blocks-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/js/code-blocks-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener("DOMContentLoaded", function(){
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><link rel="stylesheet" href="/knowledge/css/prism.css"/><link rel="stylesheet" href="/knowledge/css/main.css"/></head><body class="sideNavVisible doc separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/knowledge/"><img class="logo" src="/knowledge/img/docusaurus.svg" alt="Codering&#x27;s Knowledge"/><h2 class="headerTitleWithLogo">Codering&#x27;s Knowledge</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class="siteNavGroupActive"><a href="/knowledge/docs/nginx_basic_auth" target="_self">Docs</a></li><li class=""><a href="/knowledge/blog" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>DDD</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup navGroupActive"><h3>Nginx</h3><ul><li class="navListItem"><a class="navItem" href="/knowledge/docs/nginx_basic_auth">nginx用户认证配置</a></li></ul></div><div class="navGroup navGroupActive"><h3>UML</h3><ul><li class="navListItem"><a class="navItem" href="/knowledge/docs/uml_class_diagram_relationships">UML类图关系</a></li></ul></div><div class="navGroup navGroupActive"><h3>DDD</h3><ul><li class="navListItem"><a class="navItem" href="/knowledge/docs/ddd/docs/forum_domain_model">领域模型实例分析之-论坛</a></li><li class="navListItem"><a class="navItem" href="/knowledge/docs/ddd/docs/aggregate_design">聚合的设计</a></li><li class="navListItem"><a class="navItem" href="/knowledge/docs/ddd/docs/aggregate_comunication">聚合间的通信</a></li><li class="navListItem navListItemActive"><a class="navItem navItemActive" href="/knowledge/docs/ddd/docs/ddd_steps">DDD设计开发步骤</a></li></ul></div><div class="navGroup navGroupActive"><h3>Linux</h3><ul><li class="navListItem"><a class="navItem" href="/knowledge/docs/linux/docs/logrotate_usage">logrotate配置</a></li><li class="navListItem"><a class="navItem" href="/knowledge/docs/linux/docs/centos_env_setup">centos环境搭建</a></li><li class="navListItem"><a class="navItem" href="/knowledge/docs/linux/docs/linux_awk_usage">linux命令awk</a></li><li class="navListItem"><a class="navItem" href="/knowledge/docs/linux/docs/linux_du_usage">linux命令du</a></li></ul></div><div class="navGroup navGroupActive"><h3>Other</h3><ul><li class="navListItem"><a class="navItem" href="/knowledge/docs/file_line_ending">文件换行符</a></li></ul></div></div></section></div><script>
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1>DDD设计开发步骤</h1></header><article><div><span><p>以下主要是汤雪华老师在jdon发表的看法：</p>
+<p>DDD，领域建模是核心。</p>
+<p>以DDD为开发模式的设计开发步骤可以是：
+1）分析需求；</p>
+<p>2）画出用例图，系统中各个角色如何使用系统，也包括外部系统如何使用系统，也包括系统中到某个时间点自动启动的某些功能（此时角色就是时间）；</p>
+<p>3）针对各个用例图，就知道了系统使用的各种业务场景，同时也明确了系统的边界，从而就明确了领域模型的边界；</p>
+<p>4）在领域模型的边界内划分聚合，找出每个聚合的边界，找出边界内的聚合根，实体，值对象；这步是难点。这里一定不能混淆的一个概念是，领域建模不是以用户为中心的建模，而是以用户的需求为中心的建模。所以要努力寻找各种业务概念，切勿将所有行为都设计到User，Employee，Account，等对象上。而应该找出如Order，LeaveRecord，Payment，JobApplication，等业务概念。</p>
+<p>5）如果是根据经典的DDD领域建模，我们可以接下来分析一些领域服务，领域服务用于协调多个领域对象之间的行为；</p>
+<p>6）根据领域模型中的聚合根设计对应的仓储；这步完成就表示领域模型已经完成了。</p>
+<p>7）对照前面的需求用例，检查领域模型是否都可以满足用例中提到的各种业务场景；</p>
+<p>8）进一步分析领域模型，分析模型中哪些点是和特定系统相关的设计，哪些点可以进一步抽象出通用的领域模型，该通用领域模型可以满足此类相似系统的核心业务。比如积分系统中，可以抽象出“积分发放/消费”的模型。该模型可以在任何财务或积分系统中使用；</p>
+<p>9）现在，可以让有经验的人检查一下你设计的领域模型了，也就是如果有可能就进行一下模型Review，确保在写代码之前，模型的正确性。</p>
+<p>10）对领域模型进行单元测试，单元测试的时候，如果只想测试业务逻辑，可以设计Stub的仓储；如果想和持久化一起测试，那可以编写真实的仓储，如果你是用Hibernate来做数据存储，可以在此时建立ORM映射文件和数据库表；写完后，编写测试用例进行单元测试；</p>
+<p>11）最后实现你的UI层。但是为了让你的UI层可以不依赖于你的模型设计和测试，可以在UI层编写他自己需要的ViewModel，然后他在Web Form或Controller或View上只要访问ViewModel即可。等到你的领域模型完成并测试通过后，把领域模型的数据填充到ViewModel即可；</p>
+<p>差不多就是这个步骤吧，仅供参考。</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="aggregate_comunication">← 聚合间的通信</a><a class="docs-next button" href="../../linux/docs/logrotate_usage">logrotate日志轮转配置文档 →</a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer" style="display:none"></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+              var search = docsearch({
+                
+                apiKey: '35661468ccd73ff72b970d01662bde7b',
+                indexName: 'codering',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

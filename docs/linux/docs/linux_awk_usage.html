@@ -1,0 +1,231 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>linux命令awk · Codering&#x27;s Knowledge</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="from https://www.cnblogs.com/ggjucheng/archive/2013/01/13/2858470.html"/><meta property="og:title" content="linux命令awk · Codering&#x27;s Knowledge"/><meta property="og:type" content="website"/><meta property="og:url" content="https://codering.github.io/knowledge/index.html"/><meta property="og:description" content="from https://www.cnblogs.com/ggjucheng/archive/2013/01/13/2858470.html"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/knowledge/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="alternate" type="application/atom+xml" href="https://codering.github.io/knowledge/blog/atom.xml" title="Codering&#x27;s Knowledge Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://codering.github.io/knowledge/blog/feed.xml" title="Codering&#x27;s Knowledge Blog RSS Feed"/><link rel="stylesheet" href="/css/code-blocks-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/js/code-blocks-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener("DOMContentLoaded", function(){
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><link rel="stylesheet" href="/knowledge/css/prism.css"/><link rel="stylesheet" href="/knowledge/css/main.css"/></head><body class="sideNavVisible doc separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/knowledge/"><img class="logo" src="/knowledge/img/docusaurus.svg" alt="Codering&#x27;s Knowledge"/><h2 class="headerTitleWithLogo">Codering&#x27;s Knowledge</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class="siteNavGroupActive"><a href="/knowledge/docs/nginx_basic_auth" target="_self">Docs</a></li><li class=""><a href="/knowledge/blog" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Linux</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup navGroupActive"><h3>Nginx</h3><ul><li class="navListItem"><a class="navItem" href="/knowledge/docs/nginx_basic_auth">nginx用户认证配置</a></li></ul></div><div class="navGroup navGroupActive"><h3>UML</h3><ul><li class="navListItem"><a class="navItem" href="/knowledge/docs/uml_class_diagram_relationships">UML类图关系</a></li></ul></div><div class="navGroup navGroupActive"><h3>DDD</h3><ul><li class="navListItem"><a class="navItem" href="/knowledge/docs/ddd/docs/forum_domain_model">领域模型实例分析之-论坛</a></li><li class="navListItem"><a class="navItem" href="/knowledge/docs/ddd/docs/aggregate_design">聚合的设计</a></li><li class="navListItem"><a class="navItem" href="/knowledge/docs/ddd/docs/aggregate_comunication">聚合间的通信</a></li><li class="navListItem"><a class="navItem" href="/knowledge/docs/ddd/docs/ddd_steps">DDD设计开发步骤</a></li></ul></div><div class="navGroup navGroupActive"><h3>Linux</h3><ul><li class="navListItem"><a class="navItem" href="/knowledge/docs/linux/docs/logrotate_usage">logrotate配置</a></li><li class="navListItem"><a class="navItem" href="/knowledge/docs/linux/docs/centos_env_setup">centos环境搭建</a></li><li class="navListItem navListItemActive"><a class="navItem navItemActive" href="/knowledge/docs/linux/docs/linux_awk_usage">linux命令awk</a></li><li class="navListItem"><a class="navItem" href="/knowledge/docs/linux/docs/linux_du_usage">linux命令du</a></li></ul></div><div class="navGroup navGroupActive"><h3>Other</h3><ul><li class="navListItem"><a class="navItem" href="/knowledge/docs/file_line_ending">文件换行符</a></li></ul></div></div></section></div><script>
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1>linux命令awk</h1></header><article><div><span><p>from <a href="https://www.cnblogs.com/ggjucheng/archive/2013/01/13/2858470.html">https://www.cnblogs.com/ggjucheng/archive/2013/01/13/2858470.html</a></p>
+<h2><a class="anchor" aria-hidden="true" id="简介"></a><a href="#简介" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>简介</h2>
+<p>awk是一个强大的文本分析工具，相对于grep的查找，sed的编辑，awk在其对数据分析并生成报告时，显得尤为强大。简单来说awk就是把文件逐行的读入，以空格为默认分隔符将每行切片，切开的部分再进行各种分析处理。</p>
+<p>awk有3个不同版本: awk、nawk和gawk，未作特别说明，一般指gawk，gawk 是 AWK 的 GNU 版本。</p>
+<p>awk其名称得自于它的创始人 Alfred Aho 、Peter Weinberger 和 Brian Kernighan 姓氏的首个字母。实际上 AWK 的确拥有自己的语言： AWK 程序设计语言 ， 三位创建者已将它正式定义为“样式扫描和处理语言”。它允许您创建简短的程序，这些程序读取输入文件、为数据排序、处理数据、对输入执行计算以及生成报表，还有无数其他的功能。</p>
+<h2><a class="anchor" aria-hidden="true" id="使用方法"></a><a href="#使用方法" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>使用方法</h2>
+<pre><code class="hljs css languages- sh">awk <span class="hljs-string">'{pattern + action}'</span> {filenames}
+</code></pre>
+<p>尽管操作可能会很复杂，但语法总是这样，其中 pattern 表示 AWK 在数据中查找的内容，而 action 是在找到匹配内容时所执行的一系列命令。花括号（{}）不需要在程序中始终出现，但它们用于根据特定的模式对一系列指令进行分组。 pattern就是要表示的正则表达式，用斜杠括起来。</p>
+<p>awk语言的最基本功能是在文件或者字符串中基于指定规则浏览和抽取信息，awk抽取信息后，才能进行其他文本操作。完整的awk脚本通常用来格式化文本文件中的信息。</p>
+<p>通常，awk是以文件的一行为处理单位的。awk每接收文件的一行，然后执行相应的命令，来处理文本。</p>
+<h2><a class="anchor" aria-hidden="true" id="调用awk"></a><a href="#调用awk" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>调用awk</h2>
+<p>有三种方式调用awk</p>
+<p>1.命令行方式</p>
+<p><code>awk [-F field-separator] 'commands' input-file(s)</code></p>
+<p>其中，commands 是真正awk命令，[-F域分隔符]是可选的。 input-file(s) 是待处理的文件。
+在awk中，文件的每一行中，由域分隔符分开的每一项称为一个域。通常，在不指名-F域分隔符的情况下，默认的域分隔符是空格。</p>
+<p>2.shell脚本方式</p>
+<p>将所有的awk命令插入一个文件，并使awk程序可执行，然后awk命令解释器作为脚本的首行，一遍通过键入脚本名称来调用。
+相当于shell脚本首行的：<code>#!/bin/sh</code>
+可以换成：<code>#!/bin/awk</code></p>
+<p>3.将所有的awk命令插入一个单独文件，然后调用：</p>
+<pre><code class="hljs css languages- sh">awk -f awk-script-file input-file(s)
+</code></pre>
+<p>其中，<code>-f</code>选项加载<code>awk-script-file</code>中的awk脚本，<code>input-file(s)</code>跟上面的是一样的。</p>
+<p>本章重点介绍命令行方式。</p>
+<h2><a class="anchor" aria-hidden="true" id="入门实例"></a><a href="#入门实例" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>入门实例</h2>
+<p>假设last -n 5的输出如下</p>
+<pre><code class="hljs css languages- sh">last -n 5 &lt;==仅取出前五行
+
+root     pts/1   192.168.1.100  Tue Feb 10 11:21   still logged <span class="hljs-keyword">in</span>
+root     pts/1   192.168.1.100  Tue Feb 10 00:46 - 02:28  (01:41)
+root     pts/1   192.168.1.100  Mon Feb  9 11:41 - 18:30  (06:48)
+dmtsai   pts/1   192.168.1.100  Mon Feb  9 11:41 - 11:41  (00:00)
+root     tty1                   Fri Sep  5 14:09 - 14:10  (00:01)
+</code></pre>
+<p>如果只是显示最近登录的5个帐号</p>
+<pre><code class="hljs css languages- sh">last -n 5 | awk  <span class="hljs-string">'{print $1}'</span>
+
+root
+root
+root
+dmtsai
+root
+</code></pre>
+<p>awk工作流程是这样的：读入有'\n'换行符分割的一条记录，然后将记录按指定的域分隔符划分域，填充域，$0则表示所有域,$1表示第一个域,$n表示第n个域。默认域分隔符是&quot;空白键&quot; 或 &quot;[tab]键&quot;,所以$1表示登录用户，$3表示登录用户ip,以此类推。</p>
+<p>如果只是显示/etc/passwd的账户</p>
+<pre><code class="hljs css languages- sh">cat /etc/passwd |awk  -F <span class="hljs-string">':'</span>  <span class="hljs-string">'{print $1}'</span>  
+
+root
+daemon
+bin
+sys
+</code></pre>
+<p>这种是awk+action的示例，每行都会执行 action <code>{print $1}</code>。</p>
+<p>-F指定域分隔符为':'。</p>
+<p>如果只是显示/etc/passwd的账户和账户对应的shell,而账户与shell之间以tab键分割</p>
+<pre><code class="hljs css languages- sh">cat /etc/passwd |awk  -F <span class="hljs-string">':'</span>  <span class="hljs-string">'{print $1"\t"$7}'</span>
+
+root    /bin/bash
+daemon  /bin/sh
+bin     /bin/sh
+sys     /bin/sh
+</code></pre>
+<p>如果只是显示/etc/passwd的账户和账户对应的shell,而账户与shell之间以逗号分割,而且在所有行添加列名name,shell,在最后一行添加&quot;blue,/bin/nosh&quot;。</p>
+<pre><code class="hljs css languages- sh">cat /etc/passwd |awk  -F <span class="hljs-string">':'</span>  <span class="hljs-string">'BEGIN {print "name,shell"}  {print $1","$7} END {print "blue,/bin/nosh"}'</span>
+
+name,shell
+root,/bin/bash
+daemon,/bin/sh
+bin,/bin/sh
+sys,/bin/sh
+....
+blue,/bin/nosh
+</code></pre>
+<p>awk工作流程是这样的：先执行BEGING，然后读取文件，读入有/n换行符分割的一条记录，然后将记录按指定的域分隔符划分域，填充域，$0则表示所有域,$1表示第一个域,$n表示第n个域,随后开始执行模式所对应的动作action。接着开始读入第二条记录······直到所有的记录都读完，最后执行END操作。</p>
+<p>搜索/etc/passwd有root关键字的所有行</p>
+<pre><code class="hljs css languages- sh">awk -F: <span class="hljs-string">'/root/'</span> /etc/passwd
+
+root:x:0:0:root:/root:/bin/bash
+</code></pre>
+<p>这种是pattern的使用示例，匹配了pattern(这里是root)的行才会执行action(没有指定action，默认输出每行的内容)。</p>
+<p>搜索支持正则，例如找root开头的: <code>awk -F: '/^root/' /etc/passwd</code></p>
+<p>搜索/etc/passwd有root关键字的所有行，并显示对应的shell</p>
+<pre><code class="hljs css languages- sh">awk -F: <span class="hljs-string">'/root/{print $7}'</span> /etc/passwd 
+
+/bin/bash
+</code></pre>
+<p>这里指定了 action <code>{print $7}</code></p>
+<h2><a class="anchor" aria-hidden="true" id="awk内置变量"></a><a href="#awk内置变量" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>awk内置变量</h2>
+<p>awk有许多内置变量用来设置环境信息，这些变量可以被改变，下面给出了最常用的一些变量。</p>
+<pre><code class="hljs">ARGC               命令行参数个数
+ARGV               命令行参数排列
+ENVIRON            支持队列中系统环境变量的使用
+FILENAME           awk浏览的文件名
+FNR                浏览文件的记录数
+<span class="hljs-built_in">FS</span>                 设置输入域分隔符，等价于命令行 -F选项
+NF                 浏览记录的域的个数
+NR                 已读的记录数
+OFS                输出域分隔符
+ORS                输出记录分隔符
+RS                 控制记录分隔符
+</code></pre>
+<p>此外,$0变量是指整条记录。$1表示当前行的第一个域,$2表示当前行的第二个域,......以此类推。</p>
+<p>统计/etc/passwd:文件名，每行的行号，每行的列数，对应的完整行内容:</p>
+<pre><code class="hljs css languages- sh">awk  -F <span class="hljs-string">':'</span>  <span class="hljs-string">'{print "filename:" FILENAME ",linenumber:" NR ",columns:" NF ",linecontent:"$0}'</span> /etc/passwd
+
+filename:/etc/passwd,linenumber:1,columns:7,linecontent:root:x:0:0:root:/root:/bin/bash
+filename:/etc/passwd,linenumber:2,columns:7,linecontent:daemon:x:1:1:daemon:/usr/sbin:/bin/sh
+filename:/etc/passwd,linenumber:3,columns:7,linecontent:bin:x:2:2:bin:/bin:/bin/sh
+filename:/etc/passwd,linenumber:4,columns:7,linecontent:sys:x:3:3:sys:/dev:/bin/sh
+</code></pre>
+<p>使用printf替代print,可以让代码更加简洁，易读</p>
+<pre><code class="hljs css languages- sh">awk  -F <span class="hljs-string">':'</span>  <span class="hljs-string">'{printf("filename:%10s,linenumber:%s,columns:%s,linecontent:%s\n",FILENAME,NR,NF,$0)}'</span> /etc/passwd
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="print和printf"></a><a href="#print和printf" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>print和printf</h2>
+<p>awk中同时提供了print和printf两种打印输出的函数。</p>
+<p>其中print函数的参数可以是变量、数值或者字符串。字符串必须用双引号引用，参数用逗号分隔。如果没有逗号，参数就串联在一起而无法区分。这里，逗号的作用与输出文件的分隔符的作用是一样的，只是后者是空格而已。</p>
+<p>printf函数，其用法和c语言中printf基本相似,可以格式化字符串,输出复杂时，printf更加好用，代码更易懂。</p>
+<h2><a class="anchor" aria-hidden="true" id="awk编程"></a><a href="#awk编程" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>awk编程</h2>
+<h3><a class="anchor" aria-hidden="true" id="变量和赋值"></a><a href="#变量和赋值" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>变量和赋值</h3>
+<p>除了awk的内置变量，awk还可以自定义变量。</p>
+<p>下面统计/etc/passwd的账户人数</p>
+<pre><code class="hljs css languages- sh">awk <span class="hljs-string">'{count++;print $0;} END{print "user count is ", count}'</span> /etc/passwd
+
+root:x:0:0:root:/root:/bin/bash
+......
+user count is  40
+</code></pre>
+<p>count是自定义变量。之前的action{}里都是只有一个print,其实print只是一个语句，而action{}可以有多个语句，以;号隔开。</p>
+<p>这里没有初始化count，虽然默认是0，但是妥当的做法还是初始化为0:</p>
+<pre><code class="hljs css languages- sh">awk <span class="hljs-string">'BEGIN {count=0;print "[start]user count is ", count} {count=count+1;print $0;} END{print "[end]user count is ", count}'</span> /etc/passwd
+
+[start]user count is  0
+root:x:0:0:root:/root:/bin/bash
+...
+[end]user count is  40
+</code></pre>
+<p>统计某个文件夹下的文件占用的字节数</p>
+<pre><code class="hljs css languages- sh">ls -l |awk <span class="hljs-string">'BEGIN {size=0;} {size=size+$5;} END{print "[end]size is ", size}'</span>
+
+[end]size is  8657198
+</code></pre>
+<p>如果以M为单位显示:</p>
+<pre><code class="hljs css languages- sh">ls -l |awk <span class="hljs-string">'BEGIN {size=0;} {size=size+$5;} END{print "[end]size is ", size/1024/1024,"M"}'</span> 
+
+[end]size is  8.25889 M
+</code></pre>
+<p>注意，统计不包括文件夹的子目录。</p>
+<h3><a class="anchor" aria-hidden="true" id="条件语句"></a><a href="#条件语句" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>条件语句</h3>
+<p>awk中的条件语句是从C语言中借鉴来的，见如下声明方式：</p>
+<pre><code class="hljs css languages- sh"><span class="hljs-keyword">if</span> (expression) {
+    statement;
+    statement;
+    ... ...
+}
+
+<span class="hljs-keyword">if</span> (expression) {
+    statement;
+} <span class="hljs-keyword">else</span> {
+    statement2;
+}
+
+<span class="hljs-keyword">if</span> (expression) {
+    statement1;
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (expression1) {
+    statement2;
+} <span class="hljs-keyword">else</span> {
+    statement3;
+}
+</code></pre>
+<p>统计某个文件夹下的文件占用的字节数,过滤4096大小的文件(一般都是文件夹):</p>
+<pre><code class="hljs css languages- sh">ls -l |awk <span class="hljs-string">'BEGIN {size=0;print "[start]size is ", size} {if($5!=4096){size=size+$5;}} END{print "[end]size is ", size/1024/1024,"M"}'</span> 
+
+[end]size is  8.22339 M
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="循环语句"></a><a href="#循环语句" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>循环语句</h3>
+<p>awk中的循环语句同样借鉴于C语言，支持while、do/while、for、break、continue，这些关键字的语义和C语言中的语义完全相同。</p>
+<h3><a class="anchor" aria-hidden="true" id="数组"></a><a href="#数组" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>数组</h3>
+<p>因为awk中数组的下标可以是数字和字母，数组的下标通常被称为关键字(key)。值和关键字都存储在内部的一张针对key/value应用hash的表格里。由于hash不是顺序存储，因此在显示数组内容时会发现，它们并不是按照你预料的顺序显示出来的。数组和变量一样，都是在使用时自动创建的，awk也同样会自动判断其存储的是数字还是字符串。一般而言，awk中的数组用来从记录中收集信息，可以用于计算总和、统计单词以及跟踪模板被匹配的次数等等。</p>
+<p>显示/etc/passwd的账户</p>
+<pre><code class="hljs css languages- sh">awk -F <span class="hljs-string">':'</span> <span class="hljs-string">'BEGIN {count=0;} {name[count] = $1;count++;}; END{for (i = 0; i &lt; NR; i++) print i, name[i]}'</span> /etc/passwd
+
+0 root
+1 daemon
+2 bin
+3 sys
+4 sync
+5 games
+......
+</code></pre>
+<p>这里使用for循环遍历数组</p>
+<h2><a class="anchor" aria-hidden="true" id="参考"></a><a href="#参考" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>参考</h2>
+<p>awk编程的内容极多，这里只罗列简单常用的用法，更多请参考 <a href="http://www.gnu.org/software/gawk/manual/gawk.html">http://www.gnu.org/software/gawk/manual/gawk.html</a></p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="centos_env_setup">← centos环境搭建</a><a class="docs-next button" href="linux_du_usage">linux命令du →</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#简介">简介</a></li><li><a href="#使用方法">使用方法</a></li><li><a href="#调用awk">调用awk</a></li><li><a href="#入门实例">入门实例</a></li><li><a href="#awk内置变量">awk内置变量</a></li><li><a href="#print和printf">print和printf</a></li><li><a href="#awk编程">awk编程</a><ul class="toc-headings"><li><a href="#变量和赋值">变量和赋值</a></li><li><a href="#条件语句">条件语句</a></li><li><a href="#循环语句">循环语句</a></li><li><a href="#数组">数组</a></li></ul></li><li><a href="#参考">参考</a></li></ul></nav></div><footer class="nav-footer" id="footer" style="display:none"></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+              var search = docsearch({
+                
+                apiKey: '35661468ccd73ff72b970d01662bde7b',
+                indexName: 'codering',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>
