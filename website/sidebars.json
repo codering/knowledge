@@ -10,6 +10,7 @@
       "ddd/docs/aggregate_comunication",
       "ddd/docs/ddd_steps"
     ],
+    "Git": ["git/docs/sparse-checkout"],
     "Linux": [
       "linux/docs/logrotate_usage",
       "linux/docs/centos_env_setup",
