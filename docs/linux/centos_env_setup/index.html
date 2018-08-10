@@ -1,0 +1,473 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>centos环境搭建 · Codering&#x27;s Knowledge</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 准备"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="centos环境搭建 · Codering&#x27;s Knowledge"/><meta property="og:type" content="website"/><meta property="og:url" content="https://codering.github.io/knowledge/index.html"/><meta property="og:description" content="## 准备"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/knowledge/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="alternate" type="application/atom+xml" href="https://codering.github.io/knowledge/blog/atom.xml" title="Codering&#x27;s Knowledge Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://codering.github.io/knowledge/blog/feed.xml" title="Codering&#x27;s Knowledge Blog RSS Feed"/><link rel="stylesheet" href="/css/code-blocks-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/js/code-blocks-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener("DOMContentLoaded", function(){
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><link rel="stylesheet" href="/knowledge/css/prism.css"/><link rel="stylesheet" href="/knowledge/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/knowledge/"><img class="logo" src="/knowledge/img/docusaurus.svg" alt="Codering&#x27;s Knowledge"/><h2 class="headerTitleWithLogo">Codering&#x27;s Knowledge</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class="siteNavGroupActive"><a href="/knowledge/docs/nginx_basic_auth" target="_self">Docs</a></li><li class=""><a href="/knowledge/docs/java/juc_object_lock" target="_self">Java Concurrency</a></li><li class=""><a href="/knowledge/blog" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Linux</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Nginx</h3><ul><li class="navListItem"><a class="navItem" href="/knowledge/docs/nginx_basic_auth">nginx用户认证配置</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">UML</h3><ul><li class="navListItem"><a class="navItem" href="/knowledge/docs/uml_class_diagram_relationships">UML类图关系</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">DDD</h3><ul><li class="navListItem"><a class="navItem" href="/knowledge/docs/ddd/forum_domain_model">领域模型实例分析之-论坛</a></li><li class="navListItem"><a class="navItem" href="/knowledge/docs/ddd/aggregate_design">聚合的设计</a></li><li class="navListItem"><a class="navItem" href="/knowledge/docs/ddd/aggregate_comunication">聚合间的通信</a></li><li class="navListItem"><a class="navItem" href="/knowledge/docs/ddd/ddd_steps">DDD设计开发步骤</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Git</h3><ul><li class="navListItem"><a class="navItem" href="/knowledge/docs/git/sparse-checkout">git获取子目录</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Linux</h3><ul><li class="navListItem"><a class="navItem" href="/knowledge/docs/linux/logrotate_usage">logrotate配置</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/knowledge/docs/linux/centos_env_setup">centos环境搭建</a></li><li class="navListItem"><a class="navItem" href="/knowledge/docs/linux/linux_awk_usage">linux命令awk</a></li><li class="navListItem"><a class="navItem" href="/knowledge/docs/linux/linux_du_usage">linux命令du</a></li><li class="navListItem"><a class="navItem" href="/knowledge/docs/linux/linux_sed_usage">linux命令sed</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Other</h3><ul><li class="navListItem"><a class="navItem" href="/knowledge/docs/file_line_ending">文件换行符</a></li></ul></div></div></section></div><script>
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">centos环境搭建</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="准备"></a><a href="#准备" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>准备</h2>
+<p>本次搭建遵循以下规则：</p>
+<ul>
+<li>安装包从官网下载，尽量选择稳定版本</li>
+<li>安装包都放在/usr/local/src目录中</li>
+<li>对需要编译的软件，尽量选择安装在<code>/usr/local</code>目录，如<code>/usr/local/nginx</code>, <code>/usr/local/redis</code>。 因为这类软件安装后可执行文件一般都是在<code>/usr/local/bin</code>或<code>/usr/local/sbin</code>, 因此就近原则便于管理</li>
+<li>对解压后就可以使用的软件，一般就放在<code>/opt</code>目录下，如jdk, zookeeper</li>
+</ul>
+<p>nginx及需要用到模块的源码，如下</p>
+<ul>
+<li><a href="https://nginx.org/en/download.html">nginx</a>, 目前用的1.12.x版本。</li>
+<li><a href="https://www.openssl.org/source/">openssl</a>, 让ngnix支持ssl(https)功能。一般linux有自带(版本很老)，但nginx在编译时可能找不到，所以最好还是下载一份，目前用的1.1.x并带有小写字母的稳定版本。</li>
+<li><a href="https://www.pcre.org/">pcre</a>, 让ngnix支持rewrite功能。目前用的8.x版本，最新版本编译不过。</li>
+<li><a href="https://zlib.net/">zlib</a>，让ngnix支持gzip功能. 目前用的1.2.x版本。</li>
+<li><a href="https://github.com/openresty/echo-nginx-module/releases">echo</a>, 让ngnix支持echo输出字符的功能, 对于调试很方便. 目前用的版本是0.61。</li>
+<li><a href="https://github.com/nbs-system/naxsi/releases">naxsi</a>, 让ngnix支持WAF防火墙,主要是防御XSS和SQL注入的功能. 目前用的0.55.x版本。</li>
+</ul>
+<p>java，目前选择的是Oracle的jdk8(8是长期维护版LTS)，新版本还有9和10</p>
+<ul>
+<li><a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">jdk8</a></li>
+<li><a href="http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html">jce8</a>, 这个用于AES加解密长度限制问题。</li>
+</ul>
+<p>redis，目前选择的是 3.2.x，最新版是4.x.x</p>
+<ul>
+<li><a href="https://redis.io/download">redis</a></li>
+</ul>
+<p>zookeeper, 目前用的3.4.x</p>
+<ul>
+<li><a href="https://zookeeper.apache.org/releases.html">zookeeper</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="更新系统"></a><a href="#更新系统" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>更新系统</h2>
+<pre><code class="hljs css languages- shell">yum update
+</code></pre>
+<p>如果发现更新源地址不可用，去 /etc/yum.repo.d目下修改源的配置(或自己新建一个xxx.repo文件)，再执行。</p>
+<pre><code class="hljs"><span class="hljs-section">[base]</span>
+<span class="hljs-attr">name</span>=CentOS-<span class="hljs-variable">$releasever</span> - Base
+<span class="hljs-attr">baseurl</span>=http://<span class="hljs-number">10.10</span>.<span class="hljs-number">10.1</span>/centos/<span class="hljs-variable">$releasever</span>/os/<span class="hljs-variable">$basearch</span>/
+<span class="hljs-attr">enable</span>=<span class="hljs-number">1</span>
+<span class="hljs-attr">gpgcheck</span>=<span class="hljs-number">0</span>
+<span class="hljs-attr">gpgkey</span>=http://<span class="hljs-number">10.10</span>.<span class="hljs-number">10.1</span>/centos/RPM-GPG-KEY-CentOS-<span class="hljs-number">6</span>
+<span class="hljs-section">
+[updates]</span>
+<span class="hljs-attr">name</span>=CentOS-<span class="hljs-variable">$releasever</span> - Updates
+<span class="hljs-attr">baseurl</span>=http://<span class="hljs-number">10.10</span>.<span class="hljs-number">10.1</span>/centos/<span class="hljs-variable">$releasever</span>/updates/<span class="hljs-variable">$basearch</span>/
+<span class="hljs-attr">enable</span>=<span class="hljs-number">1</span>
+<span class="hljs-attr">gpgcheck</span>=<span class="hljs-number">0</span>
+<span class="hljs-attr">gpgkey</span>=http://<span class="hljs-number">10.10</span>.<span class="hljs-number">10.1</span>/centos/RPM-GPG-KEY-CentOS-<span class="hljs-number">6</span>
+<span class="hljs-section">
+[extras]</span>
+<span class="hljs-attr">name</span>=CentOS-<span class="hljs-variable">$releasever</span> - Extras
+<span class="hljs-attr">baseurl</span>=http://<span class="hljs-number">10.10</span>.<span class="hljs-number">10.1</span>/centos/<span class="hljs-variable">$releasever</span>/extras/<span class="hljs-variable">$basearch</span>/
+<span class="hljs-attr">enable</span>=<span class="hljs-number">1</span>
+<span class="hljs-attr">gpgcheck</span>=<span class="hljs-number">0</span>
+<span class="hljs-attr">gpgkey</span>=http://<span class="hljs-number">10.10</span>.<span class="hljs-number">10.1</span>/centos/RPM-GPG-KEY-CentOS-<span class="hljs-number">6</span>
+
+</code></pre>
+<p>更新完成后，查看下系统及内核版本</p>
+<pre><code class="hljs css languages- sh">lab_release -a
+
+LSB Version:    :base-4.0-amd64:base-4.0-noarch:core-4.0-amd64:core-4.0-noarch:graphics-4.0-amd64:graphics-4.0-noarch:printing-4.0-amd64:printing-4.0-noarch
+Distributor ID: CentOS
+Description:    CentOS release 6.9 (Final)
+Release:    6.9
+Codename:   Final
+
+uname -a
+
+Linux localhost 2.6.32-642.el6.x86_64 <span class="hljs-comment">#1 SMP Tue May 10 17:27:01 UTC 2016 x86_64 x86_64 x86_64 GNU/Linux</span>
+
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="安装nginx"></a><a href="#安装nginx" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>安装nginx</h2>
+<h3><a class="anchor" aria-hidden="true" id="安装gcc"></a><a href="#安装gcc" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>安装gcc</h3>
+<pre><code class="hljs css languages- sh">yum install gcc gcc-c++
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="解压nginx及其依赖模块"></a><a href="#解压nginx及其依赖模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>解压nginx及其依赖模块</h3>
+<pre><code class="hljs css languages- sh"><span class="hljs-built_in">cd</span> /usr/<span class="hljs-built_in">local</span>/src
+tar zxvf nginx-1.12.2.tar.gz
+tar zxvf pcre-8.40.tar.gz
+tar zxvf zlib-1.2.11.tar.gz
+tar zxvf <span class="hljs-built_in">echo</span>-nginx-module-0.61.tar.gz
+tar zxvf naxsi-0.55.3.tar.gz
+
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="编译与安装"></a><a href="#编译与安装" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>编译与安装</h3>
+<pre><code class="hljs css languages- sh"><span class="hljs-built_in">cd</span> nginx-1.12.2
+./configure \
+--add-module=../naxsi-0.55.3/naxsi_src \
+--add-module=../<span class="hljs-built_in">echo</span>-nginx-module-0.61 \
+--with-openssl=../openssl-1.1.0g \
+--with-pcre=../pcre-8.40 \
+--with-pcre-jit \
+--with-zlib=../zlib-1.2.11 \
+--with-http_realip_module \
+--with-http_stub_status_module \
+--with-http_ssl_module \
+--with-http_sub_module \
+--with-http_gzip_static_module \
+--with-http_gunzip_module \
+--with-stream \
+
+</code></pre>
+<p>执行configure后的输出结果</p>
+<pre><code class="hljs">Configuration summary
+  + using PCRE library: <span class="hljs-built_in">..</span>/pcre-8.40
+  + using OpenSSL library: <span class="hljs-built_in">..</span>/openssl-1.1.0g
+  + using zlib library: <span class="hljs-built_in">..</span>/zlib-1.2.11
+
+  nginx path prefix: <span class="hljs-string">"/usr/local/nginx"</span>
+  nginx binary file: <span class="hljs-string">"/usr/local/nginx/sbin/nginx"</span>
+  nginx modules path: <span class="hljs-string">"/usr/local/nginx/modules"</span>
+  nginx configuration prefix: <span class="hljs-string">"/usr/local/nginx/conf"</span>
+  nginx configuration file: <span class="hljs-string">"/usr/local/nginx/conf/nginx.conf"</span>
+  nginx pid file: <span class="hljs-string">"/usr/local/nginx/logs/nginx.pid"</span>
+  nginx <span class="hljs-builtin-name">error</span> log file: <span class="hljs-string">"/usr/local/nginx/logs/error.log"</span>
+  nginx http access log file: <span class="hljs-string">"/usr/local/nginx/logs/access.log"</span>
+  nginx http<span class="hljs-built_in"> client </span>request body temporary files: <span class="hljs-string">"client_body_temp"</span>
+  nginx http<span class="hljs-built_in"> proxy </span>temporary files: <span class="hljs-string">"proxy_temp"</span>
+  nginx http fastcgi temporary files: <span class="hljs-string">"fastcgi_temp"</span>
+  nginx http uwsgi temporary files: <span class="hljs-string">"uwsgi_temp"</span>
+  nginx http scgi temporary files: “scgi_temp<span class="hljs-string">"
+</span></code></pre>
+<p>确认没什么问题后开始make, 如果看到“Error”, 说明安装失败</p>
+<pre><code class="hljs css languages- sh">make &amp;&amp; make install
+</code></pre>
+<p>查看下/usr/local/nginx目录，<code>sslkey</code>目录是我自己创建的，用于存放ssl证书</p>
+<pre><code class="hljs">ll /usr/local/nginx
+
+总用量 40
+drwx------<span class="hljs-number"> 2 </span>nobody root<span class="hljs-number"> 4096 </span>3月 <span class="hljs-number"> 27 </span>10:39 client_body_temp
+drwxr-xr-x<span class="hljs-number"> 2 </span>root   root<span class="hljs-number"> 4096 </span>3月 <span class="hljs-number"> 28 </span>17:50 conf
+drwx------<span class="hljs-number"> 2 </span>nobody root<span class="hljs-number"> 4096 </span>3月 <span class="hljs-number"> 23 </span>14:46 fastcgi_temp
+drwxr-xr-x<span class="hljs-number"> 2 </span>root   root<span class="hljs-number"> 4096 </span>3月 <span class="hljs-number"> 23 </span>14:43 html
+drwxr-xr-x<span class="hljs-number"> 2 </span>root   root<span class="hljs-number"> 4096 </span>3月 <span class="hljs-number"> 26 </span>18:58 logs
+drwx------<span class="hljs-number"> 2 </span>nobody root<span class="hljs-number"> 4096 </span>3月 <span class="hljs-number"> 23 </span>14:46 proxy_temp
+drwxr-xr-x<span class="hljs-number"> 2 </span>root   root<span class="hljs-number"> 4096 </span>3月 <span class="hljs-number"> 23 </span>14:43 sbin
+drwx------<span class="hljs-number"> 2 </span>nobody root<span class="hljs-number"> 4096 </span>3月 <span class="hljs-number"> 23 </span>14:46 scgi_temp
+drwxr-xr-x<span class="hljs-number"> 2 </span>root   root<span class="hljs-number"> 4096 </span>3月 <span class="hljs-number"> 26 </span>14:45 sslkey
+drwx------<span class="hljs-number"> 2 </span>nobody root<span class="hljs-number"> 4096 </span>3月 <span class="hljs-number"> 23 </span>14:46 uwsgi_temp
+
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="添加软连接"></a><a href="#添加软连接" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>添加软连接</h3>
+<p>如果你指定了<code>--sbin-path</code>，这步可选。</p>
+<p>由于configure时没有指定<code>--sbin-path</code>, 因此nginx可执行文件默认路径为<code>prefix/sbin/nginx</code>，即<code>/usr/local/nginx/sbin/nginx</code>。因此为了便于使用，给nginx可执行文件加个软连接，这样就不必用全路径来使用nginx命令。</p>
+<pre><code class="hljs">ln -s <span class="hljs-meta-keyword">/usr/</span>local<span class="hljs-meta-keyword">/nginx/</span>sbin/nginx <span class="hljs-meta-keyword">/usr/</span>local<span class="hljs-meta-keyword">/sbin/</span>nginx
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="安装redis"></a><a href="#安装redis" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>安装redis</h2>
+<h3><a class="anchor" aria-hidden="true" id="安装gcc-1"></a><a href="#安装gcc-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>安装gcc</h3>
+<pre><code class="hljs css languages- sh">yum install gcc
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="解压"></a><a href="#解压" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>解压</h3>
+<pre><code class="hljs css languages- sh"><span class="hljs-built_in">cd</span> /usr/<span class="hljs-built_in">local</span>/src
+tar zxvf redis-3.2.11.tar.gz
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="编译"></a><a href="#编译" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>编译</h3>
+<pre><code class="hljs css languages- sh"><span class="hljs-built_in">cd</span> redis-3.2.11
+make MALLOC=libc <span class="hljs-comment"># 如果已安装jemalloc，直接执行make</span>
+make install
+</code></pre>
+<p>这里注意<code>make</code>时指定了<code>MALLOC</code>参数，因为redis默认的内存管理策略是<code>jemalloc</code>, 如果没有装这个，请改成<code>libc</code>.</p>
+<h3><a class="anchor" aria-hidden="true" id="安装及初始化配置"></a><a href="#安装及初始化配置" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>安装及初始化配置</h3>
+<pre><code class="hljs css languages- sh"><span class="hljs-built_in">cd</span> utils <span class="hljs-comment"># 进入redis源码中的utils目录</span>
+./install_server.sh <span class="hljs-comment">#执行后会有交互性提示，让你选择路径配置文件路径及端口等，如下</span>
+
+This script will <span class="hljs-built_in">help</span> you easily <span class="hljs-built_in">set</span> up a running redis server
+
+Please select the redis port <span class="hljs-keyword">for</span> this instance: [6379]
+Selecting default: 6379
+Please select the redis config file name [/etc/redis/6379.conf] /usr/<span class="hljs-built_in">local</span>/redis/6379.conf
+Please select the redis <span class="hljs-built_in">log</span> file name [/var/<span class="hljs-built_in">log</span>/redis_6379.log] /usr/<span class="hljs-built_in">local</span>/redis/<span class="hljs-built_in">log</span>/6379.log
+Please select the data directory <span class="hljs-keyword">for</span> this instance [/var/lib/redis/6379] /usr/<span class="hljs-built_in">local</span>/redis/db/6379
+Please select the redis executable path [/usr/<span class="hljs-built_in">local</span>/bin/redis-server]
+Selected config:
+Port           : 6379
+Config file    : /usr/<span class="hljs-built_in">local</span>/redis/6379.conf
+Log file       : /usr/<span class="hljs-built_in">local</span>/redis/<span class="hljs-built_in">log</span>/6379.log
+Data dir       : /usr/<span class="hljs-built_in">local</span>/redis/db/6379
+Executable     : /usr/<span class="hljs-built_in">local</span>/bin/redis-server
+Cli Executable : /usr/<span class="hljs-built_in">local</span>/bin/redis-cli
+
+</code></pre>
+<p>查看下redis的安装目录</p>
+<pre><code class="hljs css languages- sh">ll /usr/<span class="hljs-built_in">local</span>/redis/
+总用量 12
+drwxr-xr-x 2 root root 4096 3月  26 14:37 conf
+drwxr-xr-x 3 root root 4096 3月  23 16:19 db
+drwxr-xr-x 2 root root 4096 3月  23 16:19 <span class="hljs-built_in">log</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="修改绑定ip"></a><a href="#修改绑定ip" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>修改绑定IP</h3>
+<p><code>注：这步可以与下面的‘设置密码’一起操作，都是同一个配置文件</code></p>
+<p>redis默认只会绑定本机127.0.0.1, 这样的话，访问redis服务只能通过本机的客户端连接，而无法通过远程连接，这样可以避免将redis服务暴露于危险的网络环境中，防止一些不安全的人随随便便通过远程连接到redis服务.</p>
+<p>为了远程连接，把服务器的真实IP追加到bind中，假设ip为192.168.20.200, 操作如下</p>
+<pre><code class="hljs css languages- sh"><span class="hljs-comment"># 编辑配置文件</span>
+vi /usr/<span class="hljs-built_in">local</span>/redis/conf/6379.conf 
+
+<span class="hljs-comment"># 查找bind的配置，如下</span>
+
+<span class="hljs-comment">################################## NETWORK #####################################</span>
+
+<span class="hljs-comment"># By default, if no "bind" configuration directive is specified, Redis listens</span>
+<span class="hljs-comment"># for connections from all the network interfaces available on the server.</span>
+<span class="hljs-comment"># It is possible to listen to just one or multiple selected interfaces using</span>
+<span class="hljs-comment"># the "bind" configuration directive, followed by one or more IP addresses.</span>
+<span class="hljs-comment">#</span>
+<span class="hljs-comment"># Examples:</span>
+<span class="hljs-comment">#</span>
+<span class="hljs-comment"># bind 192.168.1.100 10.0.0.1</span>
+<span class="hljs-comment"># bind 127.0.0.1 ::1</span>
+<span class="hljs-comment">#</span>
+<span class="hljs-comment"># ~~~ WARNING ~~~ If the computer running Redis is directly exposed to the</span>
+<span class="hljs-comment"># internet, binding to all the interfaces is dangerous and will expose the</span>
+<span class="hljs-comment"># instance to everybody on the internet. So by default we uncomment the</span>
+<span class="hljs-comment"># following bind directive, that will force Redis to listen only into</span>
+<span class="hljs-comment"># the IPv4 lookback interface address (this means Redis will be able to</span>
+<span class="hljs-comment"># accept connections only from clients running into the same computer it</span>
+<span class="hljs-comment"># is running).</span>
+<span class="hljs-comment">#</span>
+<span class="hljs-comment"># IF YOU ARE SURE YOU WANT YOUR INSTANCE TO LISTEN TO ALL THE INTERFACES</span>
+<span class="hljs-comment"># JUST COMMENT THE FOLLOWING LINE.</span>
+<span class="hljs-comment"># ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+<span class="hljs-built_in">bind</span> 127.0.0.1 192.168.20.200
+
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="设置密码"></a><a href="#设置密码" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>设置密码</h2>
+<p>redis默认情况下，客户端连接是不需要密码的，只要ip和端口正确就可以连接。安全考虑，需设置一个密码，假设为123456，如下</p>
+<pre><code class="hljs css languages- sh"><span class="hljs-comment"># 编辑配置文件</span>
+vi /usr/<span class="hljs-built_in">local</span>/redis/conf/6379.conf 
+
+<span class="hljs-comment"># 查找requirepass的配置，</span>
+
+
+<span class="hljs-comment">################################## SECURITY ###################################</span>
+
+<span class="hljs-comment"># Require clients to issue AUTH &lt;PASSWORD&gt; before processing any other</span>
+<span class="hljs-comment"># commands.  This might be useful in environments in which you do not trust</span>
+<span class="hljs-comment"># others with access to the host running redis-server.</span>
+<span class="hljs-comment">#</span>
+<span class="hljs-comment"># This should stay commented out for backward compatibility and because most</span>
+<span class="hljs-comment"># people do not need auth (e.g. they run their own servers).</span>
+<span class="hljs-comment">#</span>
+<span class="hljs-comment"># Warning: since Redis is pretty fast an outside user can try up to</span>
+<span class="hljs-comment"># 150k passwords per second against a good box. This means that you should</span>
+<span class="hljs-comment"># use a very strong password otherwise it will be very easy to break.</span>
+<span class="hljs-comment">#</span>
+requirepass 123456
+
+<span class="hljs-comment"># Command renaming.</span>
+
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="启动与停止"></a><a href="#启动与停止" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>启动与停止</h3>
+<p>redis的可执行文件默认是在<code>/usr/local/bin</code>中，因此可以直接使用</p>
+<pre><code class="hljs css languages- sh"><span class="hljs-comment"># 启动</span>
+redis-server /usr/<span class="hljs-built_in">local</span>/redis/conf/6379.conf
+
+<span class="hljs-comment"># 停止</span>
+redis-cli shutdown 
+<span class="hljs-comment"># 或直接kill</span>
+<span class="hljs-built_in">kill</span> -9 redis的pid
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="安装java"></a><a href="#安装java" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>安装java</h2>
+<h3><a class="anchor" aria-hidden="true" id="卸载系统自带的openjdk"></a><a href="#卸载系统自带的openjdk" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>卸载系统自带的openjdk</h3>
+<pre><code class="hljs css languages- sh"><span class="hljs-comment"># 看下系统自带的java版本</span>
+java -version
+<span class="hljs-comment"># 输出如下</span>
+openjdk version <span class="hljs-string">"1.8.0_161"</span>
+OpenJDK Runtime Environment (build 1.8.0_161-b14)
+OpenJDK 64-Bit Server VM (build 25.161-b14, mixed mode)
+<span class="hljs-comment"># 查看系统自带的java路径</span>
+rpm -qa | grep java
+<span class="hljs-comment"># 输出如下</span>
+java-1.6.0-openjdk-1.6.0.41-1.13.13.1.el6_8.x86_64
+tzdata-java-2018c-1.el6.noarch
+java-1.7.0-openjdk-1.7.0.171-2.6.13.0.el6_9.x86_64
+<span class="hljs-comment"># java开头的openjdk都卸载</span>
+yum -y remove java-1.6.0-openjdk-1.6.0.41-1.13.13.1.el6_8.x86_64
+yum -y remove java-1.7.0-openjdk-1.7.0.171-2.6.13.0.el6_9.x86_64
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="解压-1"></a><a href="#解压-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>解压</h3>
+<pre><code class="hljs css languages- sh"><span class="hljs-comment"># 解压到/opt目录</span>
+tar zxvf jdk-8u131-linux-x64.tar.gz -C /opt
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="设置环境变量"></a><a href="#设置环境变量" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>设置环境变量</h3>
+<pre><code class="hljs css languages- sh"><span class="hljs-comment">#编辑当前用户主目录下的`.bash_profile`文件</span>
+vi ~/.bash_profile
+</code></pre>
+<p>修改后如下, 没加<code>CLASS_PATH</code>,有需要自己添加下</p>
+<pre><code class="hljs css languages- sh"><span class="hljs-comment"># .bash_profile</span>
+
+<span class="hljs-comment"># Get the aliases and functions</span>
+<span class="hljs-keyword">if</span> [ -f ~/.bashrc ]; <span class="hljs-keyword">then</span>
+    . ~/.bashrc
+<span class="hljs-keyword">fi</span>
+
+<span class="hljs-comment"># User specific environment and startup programs</span>
+
+PATH=<span class="hljs-variable">$PATH</span>:<span class="hljs-variable">$HOME</span>/bin
+
+<span class="hljs-built_in">export</span> JAVA_HOME=/opt/jdk1.8.0_131
+
+<span class="hljs-built_in">export</span> PATH=<span class="hljs-string">"<span class="hljs-variable">$PATH</span>:<span class="hljs-variable">$JAVA_HOME</span>/bin/"</span>
+
+</code></pre>
+<p>重新加载<code>.bash_profile</code></p>
+<pre><code class="hljs css languages- sh"><span class="hljs-built_in">source</span> ~/.bash_profile
+</code></pre>
+<p>查看当前java版本及路径</p>
+<pre><code class="hljs css languages- sh">java -version
+<span class="hljs-comment"># 输出如下</span>
+java version <span class="hljs-string">"1.8.0_131"</span>
+Java(TM) SE Runtime Environment (build 1.8.0_131-b11)
+Java HotSpot(TM) 64-Bit Server VM (build 25.131-b11, mixed mode)
+
+<span class="hljs-built_in">which</span> java
+<span class="hljs-comment"># 输出如下</span>
+/opt/jdk1.8.0_131/bin/java
+
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="修改jce"></a><a href="#修改jce" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>修改JCE</h3>
+<p>因为某些国家的进口管制限制，Java发布的运行环境包中的加解密有一定的限制。比如默认不允许256位密钥的AES加解密，解决方法就是修改策略文件。</p>
+<p>解压,可以看到local_policy.jar和US_export_policy.jar以及readme.txt。</p>
+<ul>
+<li><p>如果安装了JRE，将两个jar文件放到%JRE_HOME%\lib\security下覆盖原来文件，记得先备份。</p></li>
+<li><p>如果安装了JDK，将两个jar文件也放到%JAVA_HOME%\jre\lib\security下</p></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="安装zookeeper"></a><a href="#安装zookeeper" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>安装zookeeper</h2>
+<p><code>安装之前，先先确保java命令可用，因为zookeeper依赖java.</code></p>
+<p>如果zookeeper单独安装在一台服务器上，为了方便，我直接用系统自带的openjdk，没用oracle jdk。</p>
+<h3><a class="anchor" aria-hidden="true" id="解压-2"></a><a href="#解压-2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>解压</h3>
+<pre><code class="hljs css languages- sh"><span class="hljs-comment"># 解压到/opt</span>
+tar zxvf zookeeper-3.4.10.tar.gz -C /opt
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="添加配置文件zoocfg"></a><a href="#添加配置文件zoocfg" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>添加配置文件zoo.cfg</h3>
+<pre><code class="hljs css languages- sh"><span class="hljs-built_in">cd</span> /opt/zookeeper-3.4.10/conf
+<span class="hljs-comment"># 从示例文件复制</span>
+cp zoo_sample.cfg zoo.cfg
+<span class="hljs-comment"># 修改配置</span>
+vi zoo.cfg
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="修改数据存储路径"></a><a href="#修改数据存储路径" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>修改数据存储路径</h3>
+<p>查找<code>dataDir</code>,修改如下</p>
+<pre><code class="hljs css languages- sh"><span class="hljs-comment"># the directory where the snapshot is stored.</span>
+<span class="hljs-comment"># do not use /tmp for storage, /tmp here is just</span>
+<span class="hljs-comment"># example sakes.</span>
+dataDir=/opt/zookeeper-3.4.10/snapshot
+
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="启动-停止-重启"></a><a href="#启动-停止-重启" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>启动/停止/重启</h3>
+<pre><code class="hljs css languages- sh">zkServer.sh start
+zkServer.sh stop
+zkServer.sh restart
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="客户端连接"></a><a href="#客户端连接" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>客户端连接</h3>
+<pre><code class="hljs css languages- sh"><span class="hljs-comment"># 连接zk服务端，如果是远程连接，请换成远程服务器ip</span>
+zkCli.sh -server 127.0.0.1:2181
+<span class="hljs-comment"># 输出如下</span>
+Connecting to 127.0.0.1:2181
+2018-03-29 15:45:11,977 [myid:] - INFO  [main:Environment@100] - Client environment:zookeeper.version=3.4.10-39d3a4f269333c922ed3db283be479f9deacaa0f, built on 03/23/2017 10:13 GMT
+2018-03-29 15:45:11,980 [myid:] - INFO  [main:Environment@100] - Client environment:host.name=localhost
+...
+...
+[zk: 127.0.0.1:2181(CONNECTED) 0]
+
+<span class="hljs-comment"># 查看根节点</span>
+[zk: 127.0.0.1:2181(CONNECTED) 1] ls /
+[dealer, dubbo, zookeeper]
+
+<span class="hljs-comment"># 查看根节点信息</span>
+[zk: 127.0.0.1:2181(CONNECTED) 4] ls2 /
+[dealer, dubbo, zookeeper]
+cZxid = 0x0
+ctime = Thu Jan 01 08:00:00 CST 1970
+mZxid = 0x0
+mtime = Thu Jan 01 08:00:00 CST 1970
+pZxid = 0x2d
+cversion = 1
+dataVersion = 0
+aclVersion = 0
+ephemeralOwner = 0x0
+dataLength = 0
+numChildren = 3
+
+<span class="hljs-comment"># 退出</span>
+[zk: 127.0.0.1:2181(CONNECTED) 5] quit
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="防火墙iptables修改"></a><a href="#防火墙iptables修改" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>防火墙iptables修改</h2>
+<p>开启防火墙后，有些软件的端口是无法访问，需要自己手动添加端口控制</p>
+<h3><a class="anchor" aria-hidden="true" id="配置文件路径"></a><a href="#配置文件路径" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>配置文件路径</h3>
+<p><code>/etc/sysconfig/iptables</code></p>
+<h3><a class="anchor" aria-hidden="true" id="添加常用端口控制"></a><a href="#添加常用端口控制" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>添加常用端口控制</h3>
+<pre><code class="hljs css languages- sh">vi /etc/sysconfig/iptables
+</code></pre>
+<p>比如要开放6379,2181端口, 修改如下</p>
+<pre><code class="hljs css languages- sh"><span class="hljs-comment"># Firewall configuration written by system-config-firewall</span>
+<span class="hljs-comment"># Manual customization of this file is not recommended.</span>
+*filter
+:INPUT ACCEPT [0:0]
+:FORWARD ACCEPT [0:0]
+:OUTPUT ACCEPT [0:0]
+-A INPUT -p tcp -m tcp --dport 6379 -j ACCEPT <span class="hljs-comment"># 这是我添加的</span>
+-A INPUT -p tcp -m tcp --dport 2181 -j ACCEPT <span class="hljs-comment"># 这是我添加的</span>
+-A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+-A INPUT -p icmp -j ACCEPT
+-A INPUT -i lo -j ACCEPT
+-A INPUT -m state --state NEW -m tcp -p tcp -s 10.0.0.0/8 --dport 22 -j ACCEPT
+-A INPUT -s 10.10.32.0/24 -j ACCEPT
+-A INPUT -s 10.10.21.0/24 -j ACCEPT
+-A INPUT -j REJECT --reject-with icmp-host-prohibited
+-A FORWARD -j REJECT --reject-with icmp-host-prohibited
+COMMIT
+</code></pre>
+<p>重启防火墙就可以生效</p>
+<pre><code class="hljs css languages- sh">service iptables restart
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="常用命令"></a><a href="#常用命令" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>常用命令</h3>
+<pre><code class="hljs css languages- sh"><span class="hljs-comment">#启用</span>
+service iptables start
+<span class="hljs-comment">#停止</span>
+service iptables stop
+<span class="hljs-comment">#重启</span>
+service iptables restart
+</code></pre>
+<p>查看状态</p>
+<pre><code class="hljs css languages- sh">service iptables status
+<span class="hljs-comment"># 输出如下</span>
+Table: filter
+Chain INPUT (policy ACCEPT)
+num  target     prot opt <span class="hljs-built_in">source</span>               destination
+1    ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:6379
+2    ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:2181
+3    ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0           state RELATED,ESTABLISHED
+4    ACCEPT     icmp --  0.0.0.0/0            0.0.0.0/0
+5    ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0
+6    ACCEPT     tcp  --  10.0.0.0/8           0.0.0.0/0           state NEW tcp dpt:22
+7    ACCEPT     all  --  10.10.32.0/24        0.0.0.0/0
+8    ACCEPT     all  --  10.10.21.0/24        0.0.0.0/0
+9    REJECT     all  --  0.0.0.0/0            0.0.0.0/0           reject-with icmp-host-prohibited
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/knowledge/docs/linux/logrotate_usage">← logrotate日志轮转配置文档</a><a class="docs-next button" href="/knowledge/docs/linux/linux_awk_usage">linux命令awk →</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#准备">准备</a></li><li><a href="#更新系统">更新系统</a></li><li><a href="#安装nginx">安装nginx</a><ul class="toc-headings"><li><a href="#安装gcc">安装gcc</a></li><li><a href="#解压nginx及其依赖模块">解压nginx及其依赖模块</a></li><li><a href="#编译与安装">编译与安装</a></li><li><a href="#添加软连接">添加软连接</a></li></ul></li><li><a href="#安装redis">安装redis</a><ul class="toc-headings"><li><a href="#安装gcc-1">安装gcc</a></li><li><a href="#解压">解压</a></li><li><a href="#编译">编译</a></li><li><a href="#安装及初始化配置">安装及初始化配置</a></li><li><a href="#修改绑定ip">修改绑定IP</a></li></ul></li><li><a href="#设置密码">设置密码</a><ul class="toc-headings"><li><a href="#启动与停止">启动与停止</a></li></ul></li><li><a href="#安装java">安装java</a><ul class="toc-headings"><li><a href="#卸载系统自带的openjdk">卸载系统自带的openjdk</a></li><li><a href="#解压-1">解压</a></li><li><a href="#设置环境变量">设置环境变量</a></li><li><a href="#修改jce">修改JCE</a></li></ul></li><li><a href="#安装zookeeper">安装zookeeper</a><ul class="toc-headings"><li><a href="#解压-2">解压</a></li><li><a href="#添加配置文件zoocfg">添加配置文件zoo.cfg</a></li><li><a href="#修改数据存储路径">修改数据存储路径</a></li><li><a href="#启动-停止-重启">启动/停止/重启</a></li><li><a href="#客户端连接">客户端连接</a></li></ul></li><li><a href="#防火墙iptables修改">防火墙iptables修改</a><ul class="toc-headings"><li><a href="#配置文件路径">配置文件路径</a></li><li><a href="#添加常用端口控制">添加常用端口控制</a></li><li><a href="#常用命令">常用命令</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer" style="display:none"></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+              var search = docsearch({
+                
+                apiKey: '35661468ccd73ff72b970d01662bde7b',
+                indexName: 'codering',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

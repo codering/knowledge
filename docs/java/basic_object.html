@@ -1,0 +1,167 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Java对象之父-Object · Codering&#x27;s Knowledge</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 源码"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Java对象之父-Object · Codering&#x27;s Knowledge"/><meta property="og:type" content="website"/><meta property="og:url" content="https://codering.github.io/knowledge/index.html"/><meta property="og:description" content="## 源码"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/knowledge/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="alternate" type="application/atom+xml" href="https://codering.github.io/knowledge/blog/atom.xml" title="Codering&#x27;s Knowledge Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://codering.github.io/knowledge/blog/feed.xml" title="Codering&#x27;s Knowledge Blog RSS Feed"/><link rel="stylesheet" href="/css/code-blocks-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/js/code-blocks-buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener("DOMContentLoaded", function(){
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><link rel="stylesheet" href="/knowledge/css/prism.css"/><link rel="stylesheet" href="/knowledge/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/knowledge/"><img class="logo" src="/knowledge/img/docusaurus.svg" alt="Codering&#x27;s Knowledge"/><h2 class="headerTitleWithLogo">Codering&#x27;s Knowledge</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="/knowledge/docs/nginx_basic_auth" target="_self">Docs</a></li><li class=""><a href="/knowledge/docs/java/juc_object_lock" target="_self">Java Concurrency</a></li><li class=""><a href="/knowledge/blog" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Java对象之父-Object</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="源码"></a><a href="#源码" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>源码</h2>
+<p>源码(JDK1.8)如下：</p>
+<pre><code class="hljs css languages- java">
+<span class="hljs-keyword">package</span> java.lang;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Object</span> </span>{
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">native</span> <span class="hljs-keyword">void</span> <span class="hljs-title">registerNatives</span><span class="hljs-params">()</span></span>;
+
+    <span class="hljs-keyword">static</span> {
+        registerNatives();
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">native</span> Class&lt;?&gt; getClass();
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">native</span> <span class="hljs-keyword">int</span> <span class="hljs-title">hashCode</span><span class="hljs-params">()</span></span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">equals</span><span class="hljs-params">(Object obj)</span> </span>{
+        <span class="hljs-keyword">return</span> (<span class="hljs-keyword">this</span> == obj);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">native</span> Object <span class="hljs-title">clone</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> CloneNotSupportedException</span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> getClass().getName() + <span class="hljs-string">"@"</span> + Integer.toHexString(hashCode());
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">native</span> <span class="hljs-keyword">void</span> <span class="hljs-title">notify</span><span class="hljs-params">()</span></span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">native</span> <span class="hljs-keyword">void</span> <span class="hljs-title">wait</span><span class="hljs-params">(<span class="hljs-keyword">long</span> timeout)</span> <span class="hljs-keyword">throws</span> InterruptedException</span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title">wait</span><span class="hljs-params">(<span class="hljs-keyword">long</span> timeout, <span class="hljs-keyword">int</span> nanos)</span> <span class="hljs-keyword">throws</span> InterruptedException </span>{
+        <span class="hljs-keyword">if</span> (timeout &lt; <span class="hljs-number">0</span>) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalArgumentException(<span class="hljs-string">"timeout value is negative"</span>);
+        }
+
+        <span class="hljs-keyword">if</span> (nanos &lt; <span class="hljs-number">0</span> || nanos &gt; <span class="hljs-number">999999</span>) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalArgumentException(
+                                <span class="hljs-string">"nanosecond timeout value out of range"</span>);
+        }
+
+        <span class="hljs-keyword">if</span> (nanos &gt; <span class="hljs-number">0</span>) {
+            timeout++;
+        }
+
+        wait(timeout);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title">wait</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> InterruptedException </span>{
+        wait(<span class="hljs-number">0</span>);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">finalize</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Throwable </span>{ }
+}
+
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="知识点"></a><a href="#知识点" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>知识点</h2>
+<h3><a class="anchor" aria-hidden="true" id="native"></a><a href="#native" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>native</h3>
+<ul>
+<li>通常用在方法上，类似于abstract修饰的方法，只声明，无实现。</li>
+<li>表明这个方法是通过JNI技术来调用Native语言写的函数来完成，Native语言一般是指C/C++编写的函数</li>
+<li>JNI是<code>Java Native Interface</code>的缩写 ，通常称为&quot;<code>Java本地调用</code>&quot;,它将底层Native世界和Java世界联系起来,实现相互调用</li>
+<li>Java调用native函数，需要通过一个位于JNI层的动态库来实现，这个通常是在类的static语句中加载。动态库的名称，在不同平台对应的库文件名是不一样的。例如<code>xxx_jni</code>,Linux下为<code>libxxx_jni.so</code>,Windows下为<code>xxx_jni.dll</code>。但加载的时候只需要指定名称即可，系统会根据不同平台扩展成真实的动态库文件名。</li>
+<li>在JAVA项目启动时，指定vm参数<code>-verbose:jni</code>就可以看到JDK中定义了哪些native方法。
+<pre><code class="hljs">[Dynamic-linking native method java<span class="hljs-selector-class">.lang</span><span class="hljs-selector-class">.Object</span><span class="hljs-selector-class">.registerNatives</span> ... JNI]
+[Registering JNI native method java<span class="hljs-selector-class">.lang</span><span class="hljs-selector-class">.Object</span><span class="hljs-selector-class">.hashCode</span>]
+[Registering JNI native method java<span class="hljs-selector-class">.lang</span><span class="hljs-selector-class">.Object</span><span class="hljs-selector-class">.wait</span>]
+[Registering JNI native method java<span class="hljs-selector-class">.lang</span><span class="hljs-selector-class">.Object</span><span class="hljs-selector-class">.notify</span>]
+[Registering JNI native method java<span class="hljs-selector-class">.lang</span><span class="hljs-selector-class">.Object</span><span class="hljs-selector-class">.notifyAll</span>]
+[Registering JNI native method java<span class="hljs-selector-class">.lang</span><span class="hljs-selector-class">.Object</span><span class="hljs-selector-class">.clone</span>]
+[Dynamic-linking native method java<span class="hljs-selector-class">.lang</span><span class="hljs-selector-class">.System</span><span class="hljs-selector-class">.registerNatives</span> ... JNI]
+[Registering JNI native method java<span class="hljs-selector-class">.lang</span><span class="hljs-selector-class">.System</span><span class="hljs-selector-class">.currentTimeMillis</span>]
+[Registering JNI native method java<span class="hljs-selector-class">.lang</span><span class="hljs-selector-class">.System</span><span class="hljs-selector-class">.nanoTime</span>]
+[Registering JNI native method java<span class="hljs-selector-class">.lang</span><span class="hljs-selector-class">.System</span><span class="hljs-selector-class">.arraycopy</span>]
+[Dynamic-linking native method java<span class="hljs-selector-class">.lang</span><span class="hljs-selector-class">.Thread</span><span class="hljs-selector-class">.registerNatives</span> ... JNI]
+[Registering JNI native method java<span class="hljs-selector-class">.lang</span><span class="hljs-selector-class">.Thread</span><span class="hljs-selector-class">.start0</span>]
+[Registering JNI native method java<span class="hljs-selector-class">.lang</span><span class="hljs-selector-class">.Thread</span><span class="hljs-selector-class">.stop0</span>]
+[Registering JNI native method java<span class="hljs-selector-class">.lang</span><span class="hljs-selector-class">.Thread</span><span class="hljs-selector-class">.isAlive</span>]
+...
+...
+[Dynamic-linking native method sun<span class="hljs-selector-class">.misc</span><span class="hljs-selector-class">.VM</span><span class="hljs-selector-class">.initialize</span> ... JNI]
+[Dynamic-linking native method java<span class="hljs-selector-class">.lang</span><span class="hljs-selector-class">.System</span><span class="hljs-selector-class">.initProperties</span> ... JNI]
+[Dynamic-linking native method java<span class="hljs-selector-class">.lang</span><span class="hljs-selector-class">.String</span><span class="hljs-selector-class">.intern</span> ... JNI]
+[Dynamic-linking native method java<span class="hljs-selector-class">.lang</span><span class="hljs-selector-class">.Object</span><span class="hljs-selector-class">.getClass</span> ... JNI] <span class="hljs-comment">//注意这里,getClass居然单独 Dynamic-linking</span>
+[Dynamic-linking native method sun<span class="hljs-selector-class">.reflect</span><span class="hljs-selector-class">.Reflection</span><span class="hljs-selector-class">.getClassAccessFlags</span> ... JNI]
+[Dynamic-linking native method sun<span class="hljs-selector-class">.reflect</span><span class="hljs-selector-class">.NativeConstructorAccessorImpl</span><span class="hljs-selector-class">.newInstance0</span> ... JNI]
+[Dynamic-linking native method java<span class="hljs-selector-class">.lang</span><span class="hljs-selector-class">.Runtime</span><span class="hljs-selector-class">.maxMemory</span> ... JNI]
+...
+...
+</code></pre>
+目前还没搞懂<code>Dynamic-linking</code> 和 <code>Registering JNI</code> 的区别</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="final"></a><a href="#final" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>final</h3>
+<ul>
+<li>用final修饰类，说明该类不可被继承(extends)。</li>
+<li>用final修饰非private方法，说明该方法不可被子类重写(Override)。</li>
+<li>用final修饰变量，说明该变量不可被修改，在声明时就要明确地初始化。对同时被static和final修饰的变量，也可以在类的static块中完成初始化。
+<pre><code class="hljs css languages- java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">App</span> </span>{
+  <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> String FINAL_NAME = <span class="hljs-string">"Game"</span>;
+  <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String FINAL_NAME_1;
+  <span class="hljs-keyword">static</span> {
+      FINAL_NAME_1 = <span class="hljs-string">"Over"</span>;
+  }
+  ...
+  ...
+}
+</code></pre></li>
+<li>Object类中final方法有<code>getClass()</code>、<code>notify()</code>、<code>wait()</code>、<code>wait(long timeout)</code>、<code>wait(long timeout, int nanos)</code>，因此除Object外的所有类都不可用对这些方法的实现作任何修改，只能调用。</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="equals-hashcode"></a><a href="#equals-hashcode" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>equals &amp; hashCode</h3>
+<p><code>equals</code>用于判断当前对象与指定的对象是否相等</p>
+<ul>
+<li>Object类的默认实现只是判断两个对象的内存地址是否一致，这在真实场景中用户不大，一般会进行重写。</li>
+<li>重写需满足如下规则：
+<ul>
+<li>自反性: 对于任何非空引用x，x.equals(x)都应返回true</li>
+<li>对称性: 对于任何非空引用x、y，当且仅当y.equals(x)返回true时，x.equals(y)才应该返回true</li>
+<li>传递性: 对于任何非空引用x、y、z，如果x.equals(y)返回true，且y.equals(z)也返回true，则x.equals(z)也应该返回true</li>
+<li>一致性: 对于任何非空引用x、y，如果对象内部属性值没有改变，多次执行x.equals(y)始终返回true或者false。</li>
+<li>对于任何非空引用x，x.equals(null)都应该返回false</li>
+</ul></li>
+</ul>
+<p><code>hashCode</code> 返回该对象的hash码</p>
+<ul>
+<li>一般情况下用途不大，主要用于与hash表相关的类，如HashMap, HashSet等，因为这些类的内部调用了该方法。</li>
+<li>Object类的内部默认实现是将该对象的内存地址转换为一个整数返回。不同对象返回不同的整数。</li>
+<li>推荐当<code>equals</code>方法返回true时，hashCode的返回值也尽量相同；当<code>equals</code>方法返回false时，返回的hashCode尽量不同，这对于hash相关的类来说，可以减少hash冲突，获得更好的性能。</li>
+<li>当重写了<code>equals</code>方法时，请记得重写hashCode方法，否则上条规则得不到保证。</li>
+</ul>
+<p>更多可参考文章 <a href="basic_equals_hashcode">equals和hashCode源码解析</a></p>
+<h3><a class="anchor" aria-hidden="true" id="clone"></a><a href="#clone" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>clone</h3>
+<ul>
+<li>clone操作以后新对象的内存地址与被克隆对象不一样，内容不变。</li>
+<li>Object类的默认实现为浅拷贝，即如果被拷贝对象中的属性为引用对象，则拷贝后引用对象的内存地址不会发生改变。</li>
+<li>要实现深拷贝，就要求被拷贝对象内部所有引用对象的属性都要实现Clonable接口, 被拷贝对象在实现clone方法时，要显示调用其内部引用对象的clone方法。如果引用对象内部也包含引用对象，则也要做同样的处理。总的来说，就是要保证整个引用对象链中的所有对象必须都要实现Clonable接口，且实现clone方法时要显示调用其内部引用对象的clone方法。</li>
+<li>对任何对象要彻底实现深克隆，是有困难的，因为不敢保证该对象引用的第三方库也会实现Clonable接口，而且如果深拷贝链太长，性能也是大问题。</li>
+<li>一般而言，对任何非空引用x, 如果 x.clone() != x 为 true, 则 x.clone().getClass() == x.getClass() 也为true，但这不是绝对的。</li>
+<li>一般而言，对任何非空引用x, x.clone().equals(x) 为 true，但这不是绝对的。</li>
+</ul>
+<p>更多可参考 <a href="basic_clone">详解Java中的clone方法</a></p>
+<h3><a class="anchor" aria-hidden="true" id="wait-notify"></a><a href="#wait-notify" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>wait &amp; notify</h3>
+<ul>
+<li>wait 和 notify 都必须在 synchronized 修饰的同步方法或同步块(两者都称为&quot;临界区&quot;)中调用，因此在执行前必须先获得对象锁</li>
+<li>wait 使当前线程进入等待队列，且立即释放锁，当等待超时或被唤醒或被中断才出等待队列</li>
+<li>wait 应该根据某个条件循环检查, 只有不满足条件才执行wait, 防止伪唤醒或其他线程误唤醒(其他线程可能用该锁保护的是其他变量(或条件)，它就可能会执行唤醒操作)导致当前线程执行了不满足条件的操作</li>
+<li>wait 方法执行完后，必须再次获得锁之后才能继续执行</li>
+<li>notify 使等待队列中的一个线程被唤醒取出，然后和其他非等待线程一起竞争尝试获取锁</li>
+<li>notifyAll 使等待队列的全部线程被唤醒，出队列，然后和其他非等待线程一起竞争尝试获取锁，会增加上下文切换和锁竞争。</li>
+<li>在 synchronized 修饰的同步方法或同步块中调用notify或notifyAll，其他等待线程(一个或全部)被唤醒，但只有整个同步方法或同步块执行完成后该线程才会释放锁，之后其他线程才能去竞争获取锁</li>
+<li>等待队列的线程是得不到CPU调度的</li>
+<li>如果线程数很多，频繁的等待与唤醒切换，也会造成线程调度上下文频繁切换，从而导致CPU占用</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="finalize"></a><a href="#finalize" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>finalize</h3>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#源码">源码</a></li><li><a href="#知识点">知识点</a><ul class="toc-headings"><li><a href="#native">native</a></li><li><a href="#final">final</a></li><li><a href="#equals-hashcode">equals &amp; hashCode</a></li><li><a href="#clone">clone</a></li><li><a href="#wait-notify">wait &amp; notify</a></li><li><a href="#finalize">finalize</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer" style="display:none"></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+              var search = docsearch({
+                
+                apiKey: '35661468ccd73ff72b970d01662bde7b',
+                indexName: 'codering',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>
