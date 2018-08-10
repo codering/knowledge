@@ -151,10 +151,10 @@
 <li>wait 应该根据某个条件循环检查, 只有不满足条件才执行wait, 防止伪唤醒或其他线程误唤醒(其他线程可能用该锁保护的是其他变量(或条件)，它就可能会执行唤醒操作)导致当前线程执行了不满足条件的操作</li>
 <li>wait 方法执行完后，必须再次获得锁之后才能继续执行</li>
 <li>notify 使等待队列中的一个线程被唤醒取出，然后和其他非等待线程一起竞争尝试获取锁</li>
-<li>notifyAll 使等待队列的全部线程被唤醒，出队列，然后和其他非等待线程一起竞争尝试获取锁，会增加上下文切换和锁竞争。</li>
+<li>notifyAll 使等待队列的全部线程被唤醒，出队列，然后和其他非等待线程一起竞争尝试获取锁，会增加上下文切换和锁竞争,从而导致CPU占用</li>
 <li>在 synchronized 修饰的同步方法或同步块中调用notify或notifyAll，其他等待线程(一个或全部)被唤醒，但只有整个同步方法或同步块执行完成后该线程才会释放锁，之后其他线程才能去竞争获取锁</li>
 <li>等待队列的线程是得不到CPU调度的</li>
-<li>如果线程数很多，频繁的等待与唤醒切换，也会造成线程调度上下文频繁切换，从而导致CPU占用</li>
+<li>在没有被notify、中断、超时的情况下，等待线程也可能自动苏醒，这被称为&quot;虚假唤醒&quot;或&quot;伪唤醒&quot;。虽然很少发生，但一定要加循环的条件判断，不满足继续wait，防止执行不该执行的后续操作。</li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="finalize"></a><a href="#finalize" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>finalize</h3>
 </span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#源码">源码</a></li><li><a href="#知识点">知识点</a><ul class="toc-headings"><li><a href="#native">native</a></li><li><a href="#final">final</a></li><li><a href="#equals-hashcode">equals &amp; hashCode</a></li><li><a href="#clone">clone</a></li><li><a href="#wait-notify">wait &amp; notify</a></li><li><a href="#finalize">finalize</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer" style="display:none"></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
