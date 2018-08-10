@@ -5,22 +5,22 @@
     "Spring": [],
     "JAVA": [],
     "DDD": [
-      "ddd/docs/forum_domain_model", 
-      "ddd/docs/aggregate_design", 
-      "ddd/docs/aggregate_comunication",
-      "ddd/docs/ddd_steps"
+      "ddd/forum_domain_model", 
+      "ddd/aggregate_design", 
+      "ddd/aggregate_comunication",
+      "ddd/ddd_steps"
     ],
-    "Git": ["git/docs/sparse-checkout"],
+    "Git": ["git/sparse-checkout"],
     "Linux": [
-      "linux/docs/logrotate_usage",
-      "linux/docs/centos_env_setup",
-      "linux/docs/linux_awk_usage",
-      "linux/docs/linux_du_usage",
-      "linux/docs/linux_sed_usage"
+      "linux/logrotate_usage",
+      "linux/centos_env_setup",
+      "linux/linux_awk_usage",
+      "linux/linux_du_usage",
+      "linux/linux_sed_usage"
     ],
     "Other": ["file_line_ending"]
   },
-  "docs-other": {
-    "First Category": []
+  "docs-juc": {
+    "Java Concurrency": ["java/juc_object_lock"]
   }
 }

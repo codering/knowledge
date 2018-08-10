@@ -28,6 +28,7 @@ const siteConfig = {
   headerLinks: [
     {search: true },
     {doc: 'nginx_basic_auth', label: 'Docs'},
+    {doc: 'java/juc_object_lock', label: 'Java Concurrency'},
   //  {doc: 'doc4', label: 'API'},
   //  {page: 'help', label: 'Help'},
     {blog: true, label: 'Blog'},
