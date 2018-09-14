@@ -66,7 +66,7 @@ Also when one Aggregate needs to reference another Aggregate—and this will alm
 <hr>
 <p>如果一个对象想通过事件去通知另一个对象做事情，那意味着这件要做的事情还没发生。那就不能用事件，而应该用command。我请求你做做什么，我就发一个request给你，或者command给你，然后你处理就行；所以，聚合根内，发出来的事件一定是告诉别人我发生了什么，而不能是请帮我做什么这样的事件；请帮我做什么实际上已经带有目的性，也就是说它实际上已经知道了谁会去处理该事情。如果这种情况你也用事件，虽然从技术角度来说勉强解耦了，但从语义上来说并没有解耦，也就是你说的逻辑上的依赖；聚合根之间的通信应该总是由一个第三方的对象来协调，如event handler。</p>
 <p>所以，在国外，才会有saga的存在，或者叫ProcessManager的存在。这个就是实现聚合根的异步通信而设计的产物。</p>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/knowledge/docs/ddd/aggregate_design"><span class="arrow-prev">← </span><span>Previous</span></a><a class="docs-next button" href="/knowledge/docs/ddd/ddd_steps"><span>Next</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav docOnPageNav"></nav></div><footer class="nav-footer" id="footer" style="display:none"></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/knowledge/docs/ddd/aggregate_design"><span class="arrow-prev">← </span><span>Previous</span></a><a class="docs-next button" href="/knowledge/docs/ddd/ddd_steps"><span>Next</span><span class="arrow-next"> →</span></a></div><p style="font-size:12px;text-align:right"><strong>Last updated: </strong>2018-8-10 10:33:32</p></div></div><nav class="onPageNav docOnPageNav"></nav></div><footer class="nav-footer" id="footer" style="display:none"></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
               var search = docsearch({
                 
                 apiKey: '35661468ccd73ff72b970d01662bde7b',
