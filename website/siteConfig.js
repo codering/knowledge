@@ -79,6 +79,7 @@ const siteConfig = {
   scrollToTopOptions: {
     zIndex: 100,
   },
+  enableUpdateTime: true
 };
 
 module.exports = siteConfig;
