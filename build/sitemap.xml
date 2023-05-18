@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>/knowledge/</loc>
+    </url>
+    <url>
+        <loc>/knowledge/ddd/</loc>
+    </url>
+    <url>
+        <loc>/knowledge/linux/</loc>
+    </url>
+    <url>
+        <loc>/knowledge/issue-1/</loc>
+    </url>
+    <url>
+        <loc>/knowledge/authors/</loc>
+    </url>
+    <url>
+        <loc>/knowledge/@tcptty/</loc>
+    </url>
+    <url>
+        <loc>/knowledge/about/</loc>
+    </url>
+</urlset>
