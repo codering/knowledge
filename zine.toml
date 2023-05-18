@@ -1,6 +1,6 @@
 
 [site]
-url = "http://localhost"
+url = "/knowledge"
 name = "tcptty"
 description = ""
 
