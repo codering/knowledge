@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>http://localhost/</loc>
+        <loc>/knowledge/</loc>
     </url>
     <url>
-        <loc>http://localhost/ddd/</loc>
+        <loc>/knowledge/ddd/</loc>
     </url>
     <url>
-        <loc>http://localhost/linux/</loc>
+        <loc>/knowledge/linux/</loc>
     </url>
     <url>
-        <loc>http://localhost/issue-1/</loc>
+        <loc>/knowledge/issue-1/</loc>
     </url>
     <url>
-        <loc>http://localhost/authors/</loc>
+        <loc>/knowledge/authors/</loc>
     </url>
     <url>
-        <loc>http://localhost/@tcptty/</loc>
+        <loc>/knowledge/@tcptty/</loc>
     </url>
     <url>
-        <loc>http://localhost/about/</loc>
+        <loc>/knowledge/about/</loc>
     </url>
 </urlset>
