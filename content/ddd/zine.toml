@@ -1,0 +1,49 @@
+
+slug = "ddd"
+number = 1
+title = "领域驱动设计"
+
+[[article]]
+file = "forum_post_model.md"
+title = "领域模型实例分析之-论坛发帖"
+author = ""
+cover = ""
+pub_date = "2017-12-26"
+publish = true
+featured = true
+
+[[article]]
+file = "aggregate_comunication.md"
+title = "聚合间的通信"
+author = ""
+cover = ""
+pub_date = "2018-05-28"
+publish = true
+featured = true
+
+[[article]]
+file = "aggregate_design.md"
+title = "聚合的设计"
+author = ""
+cover = ""
+pub_date = "2018-05-28"
+publish = true
+featured = true
+
+[[article]]
+file = "ddd_steps.md"
+title = "DDD设计开发步骤"
+author = ""
+cover = ""
+pub_date = "2018-05-28"
+publish = true
+featured = true
+
+[[article]]
+file = "forum_domain_model.md"
+title = "领域模型实例分析之-论坛"
+author = ""
+cover = ""
+pub_date = "2018-05-28"
+publish = true
+featured = true

@@ -1,0 +1,49 @@
+
+slug = "linux"
+number = 1
+title = "Linux 常用命令"
+
+[[article]]
+file = "logrotate_usage.md"
+title = "logrotate 日志轮转配置文档"
+author = ""
+cover = ""
+pub_date = "2018-03-19"
+publish = true
+featured = true
+
+[[article]]
+file = "centos_env_setup.md"
+title = "centos环境搭建"
+author = ""
+cover = ""
+pub_date = "2018-04-14"
+publish = true
+featured = true
+
+[[article]]
+file = "linux_awk_usage.md"
+title = "awk 命令"
+author = ""
+cover = ""
+pub_date = "2018-06-15"
+publish = true
+featured = true
+
+[[article]]
+file = "linux_du_usage.md"
+title = "du 命令"
+author = ""
+cover = ""
+pub_date = "2018-06-15"
+publish = true
+featured = true
+
+[[article]]
+file = "linux_sed_usage.md"
+title = "sed 命令"
+author = ""
+cover = ""
+pub_date = "2018-06-15"
+publish = true
+featured = true

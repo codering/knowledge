@@ -1,0 +1,16 @@
+
+[site]
+url = "http://localhost"
+name = "tcptty"
+description = ""
+
+menu = [
+    { name = "About", url = "/about" },
+    { name = "Blog", url = "/" },
+]
+
+[authors]
+tcptty = {}
+
+[theme]
+background_image = "/static/bg.jpg"
