@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title>tcptty</title>
+    <subtitle></subtitle>
+    <updated>2023-05-18T10:22:46.068926Z</updated>
+    <id>http://localhost</id>
+    <link href="http://localhost/feed.xml" rel="self" type="application/atom+xml" />
+    <link href="http://localhost" rel="alternate" type="text/html" />
+    <generator uri="https://github.com/zineland/zine" version="0.15.0">zine</generator>
+    <author>
+        <name>tcptty</name>
+        <uri>http://localhost</uri>
+    </author>
+
+    </feed>

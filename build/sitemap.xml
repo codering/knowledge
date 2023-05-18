@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>http://localhost/</loc>
+    </url>
+    <url>
+        <loc>http://localhost/ddd/</loc>
+    </url>
+    <url>
+        <loc>http://localhost/linux/</loc>
+    </url>
+    <url>
+        <loc>http://localhost/issue-1/</loc>
+    </url>
+    <url>
+        <loc>http://localhost/authors/</loc>
+    </url>
+    <url>
+        <loc>http://localhost/@tcptty/</loc>
+    </url>
+    <url>
+        <loc>http://localhost/about/</loc>
+    </url>
+</urlset>
