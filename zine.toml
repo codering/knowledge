@@ -13,4 +13,4 @@ menu = [
 tcptty = {}
 
 [theme]
-background_image = "/static/bg.jpg"
+background_image = "/static/img/bg.jpg"
