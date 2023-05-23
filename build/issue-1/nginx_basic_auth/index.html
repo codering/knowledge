@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#2563eb">
+    <meta name="zine-version" content="0.15.0"/>
+    <title>Nginx Basic 认证</title>
+<meta name="description" content="from http://www.xiaoten.com/nginx-user-authentication-configuration.html
+ngx_http_auth_basic_module模块实现让访问者只有输入正确的用户密码才允许访问web内容。web上的一些内容不想被其他人知道，但是又想让部分人看到。nginx的http auth模块以及Apache http auth都是很好的解决">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Nginx Basic 认证">
+<meta property="og:description" content="from http://www.xiaoten.com/nginx-user-authentication-configuration.html
+ngx_http_auth_basic_module模块实现让访问者只有输入正确的用户密码才允许访问web内容。web上的一些内容不想被其他人知道，但是又想让部分人看到。nginx的http auth模块以及Apache http auth都是很好的解决">
+<meta name="twitter:title" content="Nginx Basic 认证">
+<meta name="twitter:description" content="from http://www.xiaoten.com/nginx-user-authentication-configuration.html
+ngx_http_auth_basic_module模块实现让访问者只有输入正确的用户密码才允许访问web内容。web上的一些内容不想被其他人知道，但是又想让部分人看到。nginx的http auth模块以及Apache http auth都是很好的解决">
+<meta property="og:url" content="/knowledge/knowledge/issue-1/nginx_basic_auth">
+<meta property="twitter:url" content="/knowledge/knowledge/issue-1/nginx_basic_auth">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:image" content="/knowledge/knowledge/static/zine-placeholder.svg">
+<meta name="twitter:image" content="/knowledge/knowledge/static/zine-placeholder.svg">
+<link rel="canonical" href="/knowledge/issue-1/nginx_basic_auth">
+<link rel="icon" type="image/png" href="/favicon.ico">
+    <link rel="stylesheet" href="/knowledge/static/zine.css">
+    <link rel="alternate" type="application/atom+xml" title="tcptty RSS" href="/feed.xml">
+    <style>
+    :root {
+        --primary-color: #2563eb;
+        --main-color: #ffffff;
+        --link-color: #2563eb;
+        --secondary-color: #eff3f7;
+    }
+    </style>
+</head>
+
+<body class="h-full bg-secondary">
+    <div class="zine-header bg-primary text-main font-bold text-center z-0"
+        style="background-image: url('/knowledge/static/img/bg.jpg')">
+    <header class="p-8 md:p-10">
+            <div class="zine-brand text-4xl lg:text-5xl">
+                <a href="/knowledge/">tcptty</a>
+            </div>
+            <ul class="zine-menu">
+                <li class="inline-block mt-6 mx-5 text-base hover:underline">
+                    <a href="/knowledge/about">About</a>
+                </li>
+                <li class="inline-block mt-6 mx-5 text-base hover:underline">
+                    <a href="/knowledge/">Blog</a>
+                </li>
+                </ul>
+        </header>
+        <div class="zine-space w-full h-32 md:h-36 lg:h-44 xl:h-48 2xl:h-56"></div>
+    </div>
+    <main
+        class="pb-10 -translate-y-32 lg:-translate-y-36 xl:-translate-y-44 2xl:-translate-y-56 mx-auto sm:max-w-scree-md md:max-w-screen-lg">
+        <div class="px-4 pb-10 md:px-8 md:pb-14 mx-4 my-6 bg-white shadow-xl shadow-slate-700/10 ring-1 ring-gray-900/5">
+    <div
+        class="sticky z-10 py-4 top-32 lg:top-36 xl:top-44 2xl:top-56 bg-white border-dashed border-b border-slate-300">
+        <div class="ml-1 md:ml-2 flex justify-between items-center">
+            <div class="zine-breadcrumb">
+                <a class="zine-diamond before:block before:absolute before:-inset-1 before:-skew-x-6 before:bg-primary relative inline-block transition sm:hover:scale-110 duration-500" href="/knowledge/issue-1">
+                    <div class="relative text-main px-4">Issue 1</div>
+                </a>
+                <span class="ml-2 text-gray-700">/ No. ⁨2⁩</span>
+            </div>
+            <div>
+                <div class="flex items-center">
+                    <div id="toc-menu" class="ml-1 md:ml-2 p-2 cursor-pointer rounded hover:bg-gray-200">
+                       <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16"
+                            data-view-component="true">
+                            <path fill-rule="evenodd"
+                                d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z">
+                            </path>
+                        </svg>
+                    </div>
+                    </div>
+                <div id="toc-list"
+                    class="absolute hidden right-0 flex flex-col max-w-screen-sm max-h-96 w-60 py-2 my-4 border bg-white rounded z-[99999] shadow-xl">
+                    <div class="px-2 overflow-y-auto">
+                        <a href="#auth_basic指令">
+                            <div class="py-1 my-1 rounded hover:bg-gray-100 pl-2 text-gray-800 font-bold text-sm">auth_basic指令</div>
+                            </a>
+                        <a href="#认证实例">
+                            <div class="py-1 my-1 rounded hover:bg-gray-100 pl-2 text-gray-800 font-bold text-sm">认证实例</div>
+                            </a>
+                        <a href="#生成密码">
+                            <div class="py-1 my-1 rounded hover:bg-gray-100 pl-2 text-gray-800 font-bold text-sm">生成密码</div>
+                            </a>
+                        <a href="#重启-nginx">
+                            <div class="py-1 my-1 rounded hover:bg-gray-100 pl-2 text-gray-800 font-bold text-sm">重启 nginx</div>
+                            </a>
+                        </div>
+                </div>
+                </div>
+        </div>
+    </div>
+    <div class="pt-10">
+        <div class="prose mx-auto">
+            <div class="zine-article-title text-2xl md:text-4xl font-extrabold leading-tight mb-8 text-center">
+                Nginx Basic 认证
+            </div>
+            <div class="flex items-center justify-between text-gray-500">
+                <span>2018-06-16</span>
+                <div class="flex items-center">
+    <span></span>
+    </div>
+
+            </div>
+            </div>
+        <article class="prose mx-auto my-12">
+            <p>from http://www.xiaoten.com/nginx-user-authentication-configuration.html</p>
+<p><code>ngx_http_auth_basic_module</code>模块实现让访问者只有输入正确的用户密码才允许访问web内容。web上的一些内容不想被其他人知道，但是又想让部分人看到。nginx的http auth模块以及Apache http auth都是很好的解决方案。</p>
+<p>默认情况下nginx已经安装了<code>ngx_http_auth_basic_module</code>模块，如果不需要这个模块，可以加上 <code>-without-http_auth_basic_module</code>。</p>
+<h2 id="auth_basic指令" class="toc-item group scroll-mt-20">
+    auth_basic指令
+    <a href="#auth_basic指令" class="ml-2 inline-block opacity-0 border-0 group-hover:opacity-100"
+        aria-label="Anchor">
+        <div
+            class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round">
+                </path>
+            </svg>
+        </div>
+    </a>
+</h2>
+<p>语法: auth_basic string | off;</p>
+<p>默认值: auth_basic off;</p>
+<p>配置段: http, server, location, limit_except</p>
+<p>默认表示不开启认证，后面如果跟上字符，这些字符会在弹窗中显示。</p>
+<p>语法: auth_basic_user_file file;</p>
+<p>默认值: —</p>
+<p>配置段: http, server, location, limit_except</p>
+<p>用户密码文件，文件内容类似如下：</p>
+<pre style="background-color:#272822;">
+<span style="color:#f8f8f2;">testuser1:password1
+</span><span style="color:#f8f8f2;">testuser2:password2:comment
+</span><span style="color:#f8f8f2;">
+</span></pre>
+<h2 id="认证实例" class="toc-item group scroll-mt-20">
+    认证实例
+    <a href="#认证实例" class="ml-2 inline-block opacity-0 border-0 group-hover:opacity-100"
+        aria-label="Anchor">
+        <div
+            class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round">
+                </path>
+            </svg>
+        </div>
+    </a>
+</h2><pre style="background-color:#272822;">
+<span style="color:#f8f8f2;">server{
+</span><span style="color:#f8f8f2;">    server_name  www.yoursite.com yoursite.com;
+</span><span style="color:#f8f8f2;"> 
+</span><span style="color:#f8f8f2;">    index index.html index.php;
+</span><span style="color:#f8f8f2;">    root /data/site/www.yoursite.com;       
+</span><span style="color:#f8f8f2;"> 
+</span><span style="color:#f8f8f2;">    location /
+</span><span style="color:#f8f8f2;">    {
+</span><span style="color:#f8f8f2;">      auth_basic &quot;nginx basic http test for yoursite.com&quot;;
+</span><span style="color:#f8f8f2;">      auth_basic_user_file conf/htpasswd; 
+</span><span style="color:#f8f8f2;">      autoindex on;
+</span><span style="color:#f8f8f2;">    }
+</span><span style="color:#f8f8f2;">}
+</span></pre>
+<p>备注：<code>一定要注意auth_basic_user_file路径，否则会不厌其烦的出现403</code>。</p>
+<h2 id="生成密码" class="toc-item group scroll-mt-20">
+    生成密码
+    <a href="#生成密码" class="ml-2 inline-block opacity-0 border-0 group-hover:opacity-100"
+        aria-label="Anchor">
+        <div
+            class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round">
+                </path>
+            </svg>
+        </div>
+    </a>
+</h2>
+<p>可以使用htpasswd，或者使用openssl</p>
+<pre style="background-color:#272822;">
+<span style="color:#66d9ef;">printf </span><span style="color:#e6db74;">&quot;test:$(openssl passwd</span><span style="font-style:italic;color:#fd971f;"> -crypt</span><span style="color:#e6db74;"> 123456)\n&quot; </span><span style="color:#f92672;">&gt;&gt;</span><span style="color:#f8f8f2;"> conf/htpasswd
+</span><span style="color:#f8f8f2;">cat conf/htpasswd 
+</span><span style="color:#f8f8f2;">test:xyJkVhXGAZ8tM
+</span><span style="color:#f8f8f2;">
+</span></pre>
+<p>账号：test
+密码：123456</p>
+<h2 id="重启-nginx" class="toc-item group scroll-mt-20">
+    重启 nginx
+    <a href="#重启-nginx" class="ml-2 inline-block opacity-0 border-0 group-hover:opacity-100"
+        aria-label="Anchor">
+        <div
+            class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round">
+                </path>
+            </svg>
+        </div>
+    </a>
+</h2><pre style="background-color:#272822;">
+<span style="color:#f8f8f2;"># /usr/local/nginx-1.12.2/sbin/nginx -s reload
+</span></pre>
+
+        </article>
+        <div class="my-4 w-full border-dashed border-t border-slate-300"></div>
+        <div class="zine-navigate flex flex-col md:flex-row md:justify-between">
+            <a class="inline my-1 py-2 px-4 font-bold text-slate-700 hover:underline" href="/knowledge/issue-1/uml_class_diagram_relationships">
+                Previous:
+                UML类图关系
+            </a>
+            <a class="inline my-1 py-2 px-4 font-bold text-slate-700 hover:underline" href="/knowledge/issue-1/file_line_ending">
+                Next:
+                文件换行符
+            </a>
+            </div>
+        </div>
+</div>
+<div
+    class="inline-link-card absolute hidden border rounded bg-white shadow-xl mx-2 w-96 transition ease-in-out sm:hover:scale-105 duration-500">
+    <a class="inline-link-url">
+        <div class="">
+            <img class="inline-link-image w-full h-52 object-cover rounded-t">
+            <div class="inline-link-title font-bold p-4 line-clamp-2"></div>
+        </div>
+    </a>
+</div>
+</main>
+    <footer class="relative">
+        <div class="bg-black text-white text-center p-16">
+            <div>
+                <a class="hover:underline" href="https://github.com/zineland/zine">Zine</a>
+                - a simple and opinionated tool to build your own magazine.
+            </div>
+        </div>
+        <a href="https://github.com/zineland"
+            class="absolute z-20 bottom-0 w-full text-center font-bold md:text-slate-100 md:opacity-10 md:hover:opacity-50 md:bg-transparent bg-primary p-2 text-main">
+            Proudly powered by Zine.
+        </a>
+    </footer>
+</body>
+<script src="/knowledge/static/medium-zoom.min.js"></script>
+<script src="/knowledge/static/zine.js"></script>
+</html>

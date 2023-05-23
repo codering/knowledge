@@ -2,6 +2,7 @@
 slug = "issue-1"
 number = 1
 title = "Issue 1"
+publish = true
 
 [[article]]
 file = "uml_class_diagram_relationships.md"

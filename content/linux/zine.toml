@@ -1,7 +1,8 @@
 
 slug = "linux"
-number = 1
+number = 2
 title = "Linux 常用命令"
+publish = true
 
 [[article]]
 file = "logrotate_usage.md"

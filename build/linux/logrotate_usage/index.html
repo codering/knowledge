@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#2563eb">
+    <meta name="zine-version" content="0.15.0"/>
+    <title>logrotate 日志轮转配置文档</title>
+<meta name="description" content="from http://blog.163.com/bull_linux/blog/static/2138811422013101334544349/
+
+使用：
+
+logrotate CONF_FILE+
+
+描述：
+
+可自动轮转，压缩，删除，邮寄日志文件。可每天，每周，每月或日志文件达到一定大小时进行操作。
+通常logrotate是一个每天的cron计划，一般不会在一天内多次修改日志，除非轮转是基于">
+<meta property="og:type" content="website">
+<meta property="og:title" content="logrotate 日志轮转配置文档">
+<meta property="og:description" content="from http://blog.163.com/bull_linux/blog/static/2138811422013101334544349/
+
+使用：
+
+logrotate CONF_FILE+
+
+描述：
+
+可自动轮转，压缩，删除，邮寄日志文件。可每天，每周，每月或日志文件达到一定大小时进行操作。
+通常logrotate是一个每天的cron计划，一般不会在一天内多次修改日志，除非轮转是基于">
+<meta name="twitter:title" content="logrotate 日志轮转配置文档">
+<meta name="twitter:description" content="from http://blog.163.com/bull_linux/blog/static/2138811422013101334544349/
+
+使用：
+
+logrotate CONF_FILE+
+
+描述：
+
+可自动轮转，压缩，删除，邮寄日志文件。可每天，每周，每月或日志文件达到一定大小时进行操作。
+通常logrotate是一个每天的cron计划，一般不会在一天内多次修改日志，除非轮转是基于">
+<meta property="og:url" content="/knowledge/knowledge/linux/logrotate_usage">
+<meta property="twitter:url" content="/knowledge/knowledge/linux/logrotate_usage">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:image" content="/knowledge/knowledge/static/zine-placeholder.svg">
+<meta name="twitter:image" content="/knowledge/knowledge/static/zine-placeholder.svg">
+<link rel="canonical" href="/knowledge/linux/logrotate_usage">
+<link rel="icon" type="image/png" href="/favicon.ico">
+    <link rel="stylesheet" href="/knowledge/static/zine.css">
+    <link rel="alternate" type="application/atom+xml" title="tcptty RSS" href="/feed.xml">
+    <style>
+    :root {
+        --primary-color: #2563eb;
+        --main-color: #ffffff;
+        --link-color: #2563eb;
+        --secondary-color: #eff3f7;
+    }
+    </style>
+</head>
+
+<body class="h-full bg-secondary">
+    <div class="zine-header bg-primary text-main font-bold text-center z-0"
+        style="background-image: url('/knowledge/static/img/bg.jpg')">
+    <header class="p-8 md:p-10">
+            <div class="zine-brand text-4xl lg:text-5xl">
+                <a href="/knowledge/">tcptty</a>
+            </div>
+            <ul class="zine-menu">
+                <li class="inline-block mt-6 mx-5 text-base hover:underline">
+                    <a href="/knowledge/about">About</a>
+                </li>
+                <li class="inline-block mt-6 mx-5 text-base hover:underline">
+                    <a href="/knowledge/">Blog</a>
+                </li>
+                </ul>
+        </header>
+        <div class="zine-space w-full h-32 md:h-36 lg:h-44 xl:h-48 2xl:h-56"></div>
+    </div>
+    <main
+        class="pb-10 -translate-y-32 lg:-translate-y-36 xl:-translate-y-44 2xl:-translate-y-56 mx-auto sm:max-w-scree-md md:max-w-screen-lg">
+        <div class="px-4 pb-10 md:px-8 md:pb-14 mx-4 my-6 bg-white shadow-xl shadow-slate-700/10 ring-1 ring-gray-900/5">
+    <div
+        class="sticky z-10 py-4 top-32 lg:top-36 xl:top-44 2xl:top-56 bg-white border-dashed border-b border-slate-300">
+        <div class="ml-1 md:ml-2 flex justify-between items-center">
+            <div class="zine-breadcrumb">
+                <a class="zine-diamond before:block before:absolute before:-inset-1 before:-skew-x-6 before:bg-primary relative inline-block transition sm:hover:scale-110 duration-500" href="/knowledge/linux">
+                    <div class="relative text-main px-4">Linux 常用命令</div>
+                </a>
+                <span class="ml-2 text-gray-700">/ No. ⁨1⁩</span>
+            </div>
+            <div>
+                <div class="flex items-center">
+                    <div id="toc-menu" class="ml-1 md:ml-2 p-2 cursor-pointer rounded hover:bg-gray-200">
+                       <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16"
+                            data-view-component="true">
+                            <path fill-rule="evenodd"
+                                d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z">
+                            </path>
+                        </svg>
+                    </div>
+                    </div>
+                <div id="toc-list"
+                    class="absolute hidden right-0 flex flex-col max-w-screen-sm max-h-96 w-60 py-2 my-4 border bg-white rounded z-[99999] shadow-xl">
+                    <div class="px-2 overflow-y-auto">
+                        <a href="#基本用法">
+                            <div class="py-1 my-1 rounded hover:bg-gray-100 pl-2 text-gray-800 font-bold text-sm">基本用法</div>
+                            </a>
+                        <a href="#示例">
+                            <div class="py-1 my-1 rounded hover:bg-gray-100 pl-2 text-gray-800 font-bold text-sm">示例</div>
+                            </a>
+                        <a href="#详细选项解释">
+                            <div class="py-1 my-1 rounded hover:bg-gray-100 pl-2 text-gray-800 font-bold text-sm">详细选项解释</div>
+                            </a>
+                        </div>
+                </div>
+                </div>
+        </div>
+    </div>
+    <div class="pt-10">
+        <div class="prose mx-auto">
+            <div class="zine-article-title text-2xl md:text-4xl font-extrabold leading-tight mb-8 text-center">
+                logrotate 日志轮转配置文档
+            </div>
+            <div class="flex items-center justify-between text-gray-500">
+                <span>2018-03-19</span>
+                <div class="flex items-center">
+    <span></span>
+    </div>
+
+            </div>
+            </div>
+        <article class="prose mx-auto my-12">
+            <p>from http://blog.163.com/bull_linux/blog/static/2138811422013101334544349/</p>
+<h2 id="基本用法" class="toc-item group scroll-mt-20">
+    基本用法
+    <a href="#基本用法" class="ml-2 inline-block opacity-0 border-0 group-hover:opacity-100"
+        aria-label="Anchor">
+        <div
+            class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round">
+                </path>
+            </svg>
+        </div>
+    </a>
+</h2>
+<ul>
+<li>
+<p>使用：
+logrotate CONF_FILE+</p>
+</li>
+<li>
+<p>描述：
+可自动轮转，压缩，删除，邮寄日志文件。可每天，每周，每月或日志文件达到一定大小时进行操作。</p>
+<p>通常logrotate是一个每天的cron计划，一般不会在一天内多次修改日志，除非轮转是基于日志大小的，
+或者logrotate被多次运行，使用了-f(–force)项。</p>
+<p>命令行上可指定任何多个配置文件。
+后面的配置会覆盖前面的配置，所以配置文件的加载顺序很重要。
+通常需要在一个配置文件中include其他配置文件，具体参见include指令用法。
+如果在命令行上给出了一个目录，那么该目录下所有文件都将被用作配置文件。</p>
+<p>如果没有参数，logrotate就打印版本等信息。如果在轮转日志时发生错误，会以非0状态退出。</p>
+</li>
+<li>
+<p>选项：</p>
+</li>
+</ul>
+<pre style="background-color:#272822;">
+<span style="color:#f8f8f2;">   -d    debug模式，隐含-v，不会对日志文件做实际操作
+</span></pre>
+<pre style="background-color:#272822;">
+<span style="color:#f8f8f2;">   -f, --force
+</span></pre>
+<pre style="background-color:#272822;">
+<span style="color:#f8f8f2;">       强制轮转日志
+</span></pre>
+<pre style="background-color:#272822;">
+<span style="color:#f8f8f2;">   -m, --mail &lt;command&gt;
+</span></pre>
+<pre style="background-color:#272822;">
+<span style="color:#f8f8f2;">       邮寄日志时使用的命令
+</span></pre>
+<pre style="background-color:#272822;">
+<span style="color:#f8f8f2;">   -s, --state &lt;statefile&gt;
+</span></pre>
+<pre style="background-color:#272822;">
+<span style="color:#f8f8f2;">       指定另一个state文件
+</span></pre>
+<pre style="background-color:#272822;">
+<span style="color:#f8f8f2;">   --usage
+</span></pre>
+<pre style="background-color:#272822;">
+<span style="color:#f8f8f2;">       打印帮助
+</span></pre>
+<pre style="background-color:#272822;">
+<span style="color:#f8f8f2;">   -v, --verbose
+</span></pre>
+<pre style="background-color:#272822;">
+<span style="color:#f8f8f2;">       详细信息
+</span></pre>
+<p>配置文件
+logrotate会读取每一个配置文件，配置文件中可对global和具体log文件配置。
+本地配置(log文件配置)覆盖global配置，后来的配置覆盖先前的配置。</p>
+<h2 id="示例" class="toc-item group scroll-mt-20">
+    示例
+    <a href="#示例" class="ml-2 inline-block opacity-0 border-0 group-hover:opacity-100"
+        aria-label="Anchor">
+        <div
+            class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round">
+                </path>
+            </svg>
+        </div>
+    </a>
+</h2><pre style="background-color:#272822;">
+<span style="color:#f8f8f2;">       </span><span style="color:#75715e;"># sample logrotate configuration file            注释行
+</span><span style="color:#f8f8f2;">       compress                            轮转后进行压缩
+</span><span style="color:#f8f8f2;">
+</span><span style="color:#f8f8f2;">       /var/log/messages {                 指定日志文件路径
+</span><span style="color:#f8f8f2;">           rotate 5                        保留5个轮转文件
+</span><span style="color:#f8f8f2;">           weekly                          每周轮转
+</span><span style="color:#f8f8f2;">           postrotate                      轮转之后执行的命令(在压缩旧日志之前)
+</span><span style="color:#f8f8f2;">               /usr/bin/killall -HUP syslogd
+</span><span style="color:#f8f8f2;">           endscript
+</span><span style="color:#f8f8f2;">       }
+</span><span style="color:#f8f8f2;">
+</span><span style="color:#f8f8f2;">       /usr/local/nginx/logs/*.log {       nginx日志文件
+</span><span style="color:#f8f8f2;">            daily
+</span><span style="color:#f8f8f2;">            rotate 5
+</span><span style="color:#f8f8f2;">            missingok
+</span><span style="color:#f8f8f2;">            dateext
+</span><span style="color:#f8f8f2;">            compress
+</span><span style="color:#f8f8f2;">            delaycompress
+</span><span style="color:#f8f8f2;">            notifempty
+</span><span style="color:#f8f8f2;">            sharedscripts
+</span><span style="color:#f8f8f2;">            postrotate
+</span><span style="color:#f8f8f2;">                if </span><span style="color:#f92672;">[ -</span><span style="color:#f8f8f2;">f /usr/local/nginx/logs/nginx.pid </span><span style="color:#f92672;">]</span><span style="color:#f8f8f2;">; then
+</span><span style="color:#f8f8f2;">                    kill -USR1 `cat /usr/local/nginx/logs/nginx.pid`
+</span><span style="color:#f8f8f2;">                fi
+</span><span style="color:#f8f8f2;">            endscript
+</span><span style="color:#f8f8f2;">        }
+</span><span style="color:#f8f8f2;">
+</span><span style="color:#f8f8f2;">       </span><span style="color:#e6db74;">&quot;/var/log/httpd/access.log&quot;</span><span style="color:#f8f8f2;"> /var/log/httpd/error.log {  指定了两个日志文件
+</span><span style="color:#f8f8f2;">                                                               文件名中有空格
+</span><span style="color:#f8f8f2;">                                                               要用</span><span style="color:#e6db74;">&quot;支持&#39; &quot; </span><span style="color:#ae81ff;">\的</span><span style="color:#f8f8f2;">shell引用规则字符
+</span><span style="color:#f8f8f2;">           rotate 5                        保留5个轮转文件
+</span><span style="color:#f8f8f2;">           mail www@my.org                 解压后邮寄超过5次轮转的老日志文件，而不是删除
+</span><span style="color:#f8f8f2;">           size 100k                       日志文件达到100K时就进行轮转
+</span><span style="color:#f8f8f2;">           sharedscripts                   表示postrotate脚本在压缩了日志之后只执行一次
+</span><span style="color:#f8f8f2;">           postrotate
+</span><span style="color:#f8f8f2;">               /usr/bin/killall -HUP httpd
+</span><span style="color:#f8f8f2;">           endscript
+</span><span style="color:#f8f8f2;">       }
+</span><span style="color:#f8f8f2;">
+</span><span style="color:#f8f8f2;">       /var/log/news/* {            所有/var/log/news/下的文件
+</span><span style="color:#f8f8f2;">                                    通配符</span><span style="color:#f92672;">*</span><span style="color:#f8f8f2;">，会轮转包括之前轮转的文件，需要olddir指令
+</span><span style="color:#f8f8f2;">                                    或者</span><span style="color:#f92672;">*</span><span style="color:#f8f8f2;">.log来指定只有.log后缀的文件
+</span><span style="color:#f8f8f2;">           monthly                  每月轮转
+</span><span style="color:#f8f8f2;">           rotate 2                
+</span><span style="color:#f8f8f2;">           olddir /var/log/news/old 配合指定文件时的</span><span style="color:#f92672;">*</span><span style="color:#f8f8f2;">通配符使用
+</span><span style="color:#f8f8f2;">           missingok                如果指定的目录不存在，logrotate会报错，此项用来关闭报错
+</span><span style="color:#f8f8f2;">           postrotate
+</span><span style="color:#f8f8f2;">               kill -HUP `cat /var/run/inn.pid`
+</span><span style="color:#f8f8f2;">           endscript
+</span><span style="color:#f8f8f2;">           nocompress               不压缩
+</span><span style="color:#f8f8f2;">       }
+</span></pre>
+<p>=====================================================</p>
+<h2 id="详细选项解释" class="toc-item group scroll-mt-20">
+    详细选项解释
+    <a href="#详细选项解释" class="ml-2 inline-block opacity-0 border-0 group-hover:opacity-100"
+        aria-label="Anchor">
+        <div
+            class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round">
+                </path>
+            </svg>
+        </div>
+    </a>
+</h2>
+<ul>
+<li>
+<p>rotate COUNT</p>
+<p>轮转COUNT次，也就是最多保留COUNT个轮转备份。
+超出的被删除或邮寄。
+设置为0，则不保存轮转的老日志。</p>
+</li>
+<li>
+<p>start COUNT</p>
+<p>轮转文件名基于这个数字。
+例如，指定0时，原日志文件轮转的备份文件以.0为扩展名，如果指定9，就直接从.9开始跳过0-8
+然后再继续向后轮转rotate指定的次数。</p>
+</li>
+<li>
+<p>compress</p>
+<p>默认使用gzip压缩老日志</p>
+</li>
+<li>
+<p>nocompress</p>
+<p>不压缩老日志</p>
+</li>
+<li>
+<p>compresscmd</p>
+<p>指定压缩命令，默认gzip</p>
+</li>
+<li>
+<p>uncompresscmd</p>
+<p>指定解压命令，默认gunzip</p>
+</li>
+<li>
+<p>compressext</p>
+<p>如果启用了压缩，指定在压缩了的日志文件上使用哪个扩展。默认随配置的压缩命令</p>
+</li>
+<li>
+<p>compressoptions</p>
+<p>可以传送命令行选项给压缩程序，默认的gzip使用-9选项(最大压缩率)</p>
+</li>
+<li>
+<p>delaycompress</p>
+<p>延迟到下次轮转时压缩之前的日志文件。</p>
+<p>需要与compress项连用，当程序有时不能关闭写日志文件时可使用此项。</p>
+</li>
+<li>
+<p>nodelaycompress</p>
+<p>不延迟压缩</p>
+</li>
+<li>
+<p>copy</p>
+<p>拷贝日志文件，不修改原有文件。</p>
+<p>给当前日志文件做快照，或其他工具需要截断或解析文件时，可使用此项</p>
+<p>使用此项时，create项就没用了，因为老日志文件占着位置</p>
+</li>
+<li>
+<p>nocopy</p>
+<p>留下原日志文件而不复制</p>
+</li>
+<li>
+<p>copytruncate</p>
+<p>在创建了拷贝后截断原日志文件到0大小，而不是用移动就日志文件再创建新文件的方法。</p>
+<p>可用于日志一些程序不关闭日志文件一直写的情况。</p>
+<p>注意，在拷贝文件和截断文件时有一个非常小的时间片，所以可能会丢失日志信息。</p>
+<p>使用此项时，create无效</p>
+</li>
+<li>
+<p>nocopytruncate</p>
+<p>创建拷贝后不截断原日志文件</p>
+</li>
+<li>
+<p>create MODE OWNER GROUP</p>
+<p>在轮转动作之后，postrotate脚本执行之前，立即使用刚轮转的日志文件名创建日志文件。</p>
+<p>MODE 指定日志文件的权限(0660之类)</p>
+<p>OWNER 指定日志文件的属主</p>
+<p>GROUP 指定日志文件的属组</p>
+<p>可省略任何上述属性，省略的属性从原文件继承，可使用nocreate项来关闭</p>
+</li>
+<li>
+<p>nocreate</p>
+<p>不创建新的日志文件</p>
+</li>
+<li>
+<p>daily</p>
+<p>每天轮转日志文件</p>
+</li>
+<li>
+<p>weekly</p>
+<p>如果当前的星期几比上次轮转的星期几少，或者过了一个多星期，就会发生轮转</p>
+<p>通常是在每周的第一天轮转，如果logrotate不是每天运行的，会在第一次有机会时进行轮转。</p>
+</li>
+<li>
+<p>monthly</p>
+<p>一月中logrotate第一次运行时进行轮转(通常是一月的第一天)</p>
+</li>
+<li>
+<p>yearly</p>
+<p>如果当前年份不同于上次轮转的年份，则进行日志轮转</p>
+</li>
+<li>
+<p>dateext</p>
+<p>归档旧日志文件时，文件名添加YYYYMMDD形式日期，可用dateformat选项扩展配置。</p>
+</li>
+<li>
+<p>nodateext</p>
+<p>不使用dateext扩展名</p>
+</li>
+<li>
+<p>dateformat FORMAT_STRING</p>
+<p>使用strftime(3)类似的格式指定dateext的格式，只允许%Y %m %d和%s指定符。</p>
+<p>默认为 -%Y%m%d</p>
+<p>注意：扩展中分割日志的字符也是日期格式的一部分，系统时钟需要设置到2001-09-09之后，%s才能正确工作</p>
+</li>
+<li>
+<p>extension EXT</p>
+<p>日志文件可在轮转后使用指定的EXT扩展名。</p>
+<p>如果使用压缩，通常EXT后还会加上压缩文件的扩展名，通常是.gz。</p>
+<p>例如想把mylog.foo轮转为mylog.1.foo.gz而不是mylog.foo.1.gz</p>
+</li>
+<li>
+<p>ifempty</p>
+<p>默认项，即使日志是空的也进行轮转，覆盖notifempty项</p>
+</li>
+<li>
+<p>notifempty</p>
+<p>如果日志为空，则不进行轮转</p>
+</li>
+<li>
+<p>include FILE_OR_DIRECTORY</p>
+<p>读取include指令下的文件。</p>
+<p>如果是目录，在继续处理包含的文件之前，按字母顺序读取目录下大部分文件(只读取普通文件)</p>
+<p>目录或管道文件等，还有使用指定扩展名的文件不读取</p>
+<p>用tabooext指令定义禁忌扩展名。</p>
+<p>include指令不能出现在日志文件定义中。</p>
+</li>
+<li>
+<p>tabooext [+] LIST</p>
+<p>修改当前禁忌扩展名列表。</p>
+<p>如果列表前使用了+，表示将LIST加到当前列表中，否则就替换当前列表。</p>
+<p>默认包含：.rpmorig, .rpmsave, .v, .swp, .dpkg-dist, .dpkg-old, .dpkg-new, .disabled</p>
+</li>
+<li>
+<p>mail ADDRESS</p>
+<p>当日志轮转超过保留数时，多出的会mail到ADDRESS。</p>
+<p>可在log定义中使用nomail指令来不邮寄该log</p>
+</li>
+<li>
+<p>nomail</p>
+<p>不邮寄日志</p>
+</li>
+<li>
+<p>mailfirst</p>
+<p>与mail指令连用，邮寄刚轮转的日志，而不是期满的日志(超出数量要被删除的)</p>
+</li>
+<li>
+<p>maillast</p>
+<p>默认项，与mail连用，邮寄超出rotate数量要被删除的日志。</p>
+</li>
+<li>
+<p>maxage COUNT</p>
+<p>删除COUNT天前的轮转备份。</p>
+<p>只在轮转动作时检查日志文件的时间戳。</p>
+<p>如果配置了maillast和mail指令，删除的轮转备份会被邮寄。</p>
+</li>
+<li>
+<p>minsize SIZE</p>
+<p>日志文件增长到超过SIZE bytes时进行轮转，但不会在额外指定的时间间隔之前(daily，weekly等)。</p>
+<p>相关的size指令与其类似，但size与间隔指令互斥，不考虑时间而直接进行轮转。</p>
+<p>而minsize指令要考虑大小和时间戳。</p>
+</li>
+<li>
+<p>size SIZE</p>
+<p>超过SIZE时轮转，SIZE默认单位是KB，可使用M，G来指定MB和GB。</p>
+</li>
+<li>
+<p>shred</p>
+<p>默认关闭</p>
+<p>删除文件使用shred -u(销毁)而不是unlink()系统调用。</p>
+<p>可确保删除日志后，文件不可读(对磁盘伤害大)。</p>
+</li>
+<li>
+<p>shredcycles COUNT</p>
+<p>调用shred在删除日志文件前覆写COUNT次，不使用此项时，就按shred默认次数覆写。</p>
+</li>
+<li>
+<p>noshred</p>
+<p>删除就文件时不使用shred</p>
+</li>
+<li>
+<p>missingok</p>
+<p>如果日志文件不存在，继续处理下一个文件而不产生报错信息。</p>
+</li>
+<li>
+<p>nomissingok</p>
+<p>默认项，如果日志文件不存在，就产生错误。</p>
+</li>
+<li>
+<p>olddir DIRECTORY</p>
+<p>轮转的日志放到DIRECTORY目录中，目录必须与日志文件在同一物理设备上，
+如果没指定绝对路径，则假定该目录在与日志目录下。</p>
+</li>
+<li>
+<p>noolddir</p>
+<p>日志只在它们的当前目录中轮转。</p>
+</li>
+<li>
+<p>sharedsctipts</p>
+<p>通常prerotate和postrotate脚本为每一个轮转的日志运行，也就是说一个单独的脚本可能因为日志轮转定义
+中匹配了多个文件时(例如/var/log/news/*)，该脚本会运行多次。</p>
+<p>指定此项，脚本只对所有匹配的日志文件统一执行一次。</p>
+<p>如果匹配的日志都不需要轮转，脚本也不会执行。</p>
+<p>如果脚本错误退出，剩下的动作也不会为任何日志执行。</p>
+<p>隐含create项，可被nosharedscripts覆盖。</p>
+</li>
+<li>
+<p>nosharedscripts</p>
+<p>默认项</p>
+<p>为每一个轮转的日志执行prerotate和postrotate</p>
+<p>如果脚本错误退出，剩下的动作只不对影响到的日志执行。</p>
+</li>
+<li>
+<p>prerotate/endscript</p>
+<p>在prerotate和endscript之间的行(他俩自己各占一行)，在日志文件被轮转之前并且有需要轮转时，才会执行。</p>
+<p>该指令只能用于log文件定义中。</p>
+</li>
+<li>
+<p>postrotate/endscript</p>
+<p>在prerotate和endscript之间的行，在日志文件被轮转之后执行。</p>
+<p>该指令只能用于log文件定义中。</p>
+</li>
+<li>
+<p>firstaction/endscript</p>
+<p>在firstaction和endscript之间的行，在轮转所有匹配了通配符的日志被轮转之前，
+在prerotate执行之前，并且至少要有一个日志需要被轮转时，才会执行。</p>
+<p>只能用于log文件定义中，如果脚本错误退出，就不再继续往下进行。</p>
+</li>
+<li>
+<p>lastaction/endscript</p>
+<p>在lastaction和endscript之间的行，在轮转了所有匹配的日志后，在postrotate执行之后，
+并且至少要有一个日志被轮转了的情况下，才会执行。</p>
+<p>只能用于log文件定义中，如果脚本错误退出，只显示一个错误信息作为最后的动作。</p>
+</li>
+</ul>
+
+        </article>
+        <div class="my-4 w-full border-dashed border-t border-slate-300"></div>
+        <div class="zine-navigate flex flex-col md:flex-row md:justify-between">
+            <a class="inline my-1 py-2 px-4 font-bold text-slate-700 hover:underline" href="/knowledge/linux/centos_env_setup">
+                Next:
+                centos环境搭建
+            </a>
+            </div>
+        </div>
+</div>
+<div
+    class="inline-link-card absolute hidden border rounded bg-white shadow-xl mx-2 w-96 transition ease-in-out sm:hover:scale-105 duration-500">
+    <a class="inline-link-url">
+        <div class="">
+            <img class="inline-link-image w-full h-52 object-cover rounded-t">
+            <div class="inline-link-title font-bold p-4 line-clamp-2"></div>
+        </div>
+    </a>
+</div>
+</main>
+    <footer class="relative">
+        <div class="bg-black text-white text-center p-16">
+            <div>
+                <a class="hover:underline" href="https://github.com/zineland/zine">Zine</a>
+                - a simple and opinionated tool to build your own magazine.
+            </div>
+        </div>
+        <a href="https://github.com/zineland"
+            class="absolute z-20 bottom-0 w-full text-center font-bold md:text-slate-100 md:opacity-10 md:hover:opacity-50 md:bg-transparent bg-primary p-2 text-main">
+            Proudly powered by Zine.
+        </a>
+    </footer>
+</body>
+<script src="/knowledge/static/medium-zoom.min.js"></script>
+<script src="/knowledge/static/zine.js"></script>
+</html>

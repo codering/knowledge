@@ -1,7 +1,8 @@
 
 slug = "ddd"
-number = 1
+number = 3
 title = "领域驱动设计"
+publish = true
 
 [[article]]
 file = "forum_post_model.md"

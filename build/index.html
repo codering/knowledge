@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#2563eb">
+    <meta name="zine-version" content="0.15.0"/>
+    <title>tcptty</title>
+<meta name="description" content="">
+<meta property="og:type" content="website">
+<meta property="og:title" content="tcptty">
+<meta property="og:description" content="">
+<meta name="twitter:title" content="tcptty">
+<meta name="twitter:description" content="">
+<link rel="icon" type="image/png" href="/favicon.ico">
+    <link rel="stylesheet" href="/knowledge/static/zine.css">
+    <link rel="alternate" type="application/atom+xml" title="tcptty RSS" href="/feed.xml">
+    <style>
+    :root {
+        --primary-color: #2563eb;
+        --main-color: #ffffff;
+        --link-color: #2563eb;
+        --secondary-color: #eff3f7;
+    }
+    </style>
+</head>
+
+<body class="h-full bg-secondary">
+    <div class="zine-header bg-primary text-main font-bold text-center z-0"
+        style="background-image: url('/knowledge/static/img/bg.jpg')">
+    <header class="p-8 md:p-10">
+            <div class="zine-brand text-4xl lg:text-5xl">
+                <a href="/knowledge/">tcptty</a>
+            </div>
+            <ul class="zine-menu">
+                <li class="inline-block mt-6 mx-5 text-base hover:underline">
+                    <a href="/knowledge/about">About</a>
+                </li>
+                <li class="inline-block mt-6 mx-5 text-base hover:underline">
+                    <a href="/knowledge/">Blog</a>
+                </li>
+                </ul>
+        </header>
+        <div class="zine-space w-full h-32 md:h-36 lg:h-44 xl:h-48 2xl:h-56"></div>
+    </div>
+    <main
+        class="pb-10 -translate-y-32 lg:-translate-y-36 xl:-translate-y-44 2xl:-translate-y-56 mx-auto sm:max-w-scree-md md:max-w-screen-lg">
+        <div class="p-4 md:p-8 mx-4 my-6 bg-white shadow-xl shadow-slate-700/10 ring-1 ring-gray-900/5">
+    <div class="text-center m-8">
+        <a href="/knowledge/ddd">
+            <div class="transition sm:hover:scale-110 duration-500">
+            <div class="mx-auto inline-block">
+    <span
+        class="zine-diamond text-2xl before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-primary relative block">
+        <div class="first-letter:text-4xl first-letter:font-bold relative text-main px-14">领域驱动设计</div>
+    </span>
+    </div>
+
+            </div>
+        </a>
+    </div>
+    <div class="flex flex-wrap flex-col sm:flex-row sm:justify-evenly items-center">
+        <div
+            class="zine-card mt-8 sm:mx-2 sm:max-w-md w-full transition ease-in-out sm:hover:scale-105 duration-500 hover:border border-gray-200">
+            <a href="/knowledge/ddd/forum_post_model">
+            <div class="zine-cover relative mx-auto ">
+                    <img class="z-0 w-full max-h-52 md:max-h-56 object-cover" loading="lazy" src="/knowledge/static/zine-placeholder.svg" alt="领域模型实例分析之-论坛发帖" />
+                </div>
+                <div class="m-3 text-xl text-black ">
+                    <div class="zine-card-title font-bold line-clamp-2">领域模型实例分析之-论坛发帖</div>
+                    <div class="zine-card-date mt-2 text-base text-gray-500">2017-12-26</div>
+                </div>
+            </a>
+        </div>
+        <div
+            class="zine-card mt-8 sm:mx-2 sm:max-w-md w-full transition ease-in-out sm:hover:scale-105 duration-500 hover:border border-gray-200">
+            <a href="/knowledge/ddd/aggregate_comunication">
+            <div class="zine-cover relative mx-auto ">
+                    <img class="z-0 w-full max-h-52 md:max-h-56 object-cover" loading="lazy" src="/knowledge/static/zine-placeholder.svg" alt="聚合间的通信" />
+                </div>
+                <div class="m-3 text-xl text-black ">
+                    <div class="zine-card-title font-bold line-clamp-2">聚合间的通信</div>
+                    <div class="zine-card-date mt-2 text-base text-gray-500">2018-05-28</div>
+                </div>
+            </a>
+        </div>
+        <div
+            class="zine-card mt-8 sm:mx-2 sm:max-w-md w-full transition ease-in-out sm:hover:scale-105 duration-500 hover:border border-gray-200">
+            <a href="/knowledge/ddd/aggregate_design">
+            <div class="zine-cover relative mx-auto ">
+                    <img class="z-0 w-full max-h-52 md:max-h-56 object-cover" loading="lazy" src="/knowledge/static/zine-placeholder.svg" alt="聚合的设计" />
+                </div>
+                <div class="m-3 text-xl text-black ">
+                    <div class="zine-card-title font-bold line-clamp-2">聚合的设计</div>
+                    <div class="zine-card-date mt-2 text-base text-gray-500">2018-05-28</div>
+                </div>
+            </a>
+        </div>
+        <div
+            class="zine-card mt-8 sm:mx-2 sm:max-w-md w-full transition ease-in-out sm:hover:scale-105 duration-500 hover:border border-gray-200">
+            <a href="/knowledge/ddd/ddd_steps">
+            <div class="zine-cover relative mx-auto ">
+                    <img class="z-0 w-full max-h-52 md:max-h-56 object-cover" loading="lazy" src="/knowledge/static/zine-placeholder.svg" alt="DDD设计开发步骤" />
+                </div>
+                <div class="m-3 text-xl text-black ">
+                    <div class="zine-card-title font-bold line-clamp-2">DDD设计开发步骤</div>
+                    <div class="zine-card-date mt-2 text-base text-gray-500">2018-05-28</div>
+                </div>
+            </a>
+        </div>
+        <div
+            class="zine-card mt-8 sm:mx-2 sm:max-w-md w-full transition ease-in-out sm:hover:scale-105 duration-500 hover:border border-gray-200">
+            <a href="/knowledge/ddd/forum_domain_model">
+            <div class="zine-cover relative mx-auto ">
+                    <img class="z-0 w-full max-h-52 md:max-h-56 object-cover" loading="lazy" src="/knowledge/static/zine-placeholder.svg" alt="领域模型实例分析之-论坛" />
+                </div>
+                <div class="m-3 text-xl text-black ">
+                    <div class="zine-card-title font-bold line-clamp-2">领域模型实例分析之-论坛</div>
+                    <div class="zine-card-date mt-2 text-base text-gray-500">2018-05-28</div>
+                </div>
+            </a>
+        </div>
+        <div class="zine-button mt-8 sm:mx-2 flex w-full mx-auto">
+            <a href="/knowledge/ddd" class="p-3 px-12 mx-auto my-8 bg-primary text-main text-sm font-bold rounded transition sm:hover:scale-110 duration-500">
+                View more
+            </a>
+        </div>
+    </div>
+</div>
+<div class="p-4 md:p-8 mx-4 my-6 bg-white shadow-xl shadow-slate-700/10 ring-1 ring-gray-900/5">
+    <div class="text-center m-8">
+        <a href="/knowledge/linux">
+            <div class="transition sm:hover:scale-110 duration-500">
+            <div class="mx-auto inline-block">
+    <span
+        class="zine-diamond text-2xl before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-primary relative block">
+        <div class="first-letter:text-4xl first-letter:font-bold relative text-main px-14">Linux 常用命令</div>
+    </span>
+    </div>
+
+            </div>
+        </a>
+    </div>
+    <div class="flex flex-wrap flex-col sm:flex-row sm:justify-evenly items-center">
+        <div
+            class="zine-card mt-8 sm:mx-2 sm:max-w-md w-full transition ease-in-out sm:hover:scale-105 duration-500 hover:border border-gray-200">
+            <a href="/knowledge/linux/logrotate_usage">
+            <div class="zine-cover relative mx-auto ">
+                    <img class="z-0 w-full max-h-52 md:max-h-56 object-cover" loading="lazy" src="/knowledge/static/zine-placeholder.svg" alt="logrotate 日志轮转配置文档" />
+                </div>
+                <div class="m-3 text-xl text-black ">
+                    <div class="zine-card-title font-bold line-clamp-2">logrotate 日志轮转配置文档</div>
+                    <div class="zine-card-date mt-2 text-base text-gray-500">2018-03-19</div>
+                </div>
+            </a>
+        </div>
+        <div
+            class="zine-card mt-8 sm:mx-2 sm:max-w-md w-full transition ease-in-out sm:hover:scale-105 duration-500 hover:border border-gray-200">
+            <a href="/knowledge/linux/centos_env_setup">
+            <div class="zine-cover relative mx-auto ">
+                    <img class="z-0 w-full max-h-52 md:max-h-56 object-cover" loading="lazy" src="/knowledge/static/zine-placeholder.svg" alt="centos环境搭建" />
+                </div>
+                <div class="m-3 text-xl text-black ">
+                    <div class="zine-card-title font-bold line-clamp-2">centos环境搭建</div>
+                    <div class="zine-card-date mt-2 text-base text-gray-500">2018-04-14</div>
+                </div>
+            </a>
+        </div>
+        <div
+            class="zine-card mt-8 sm:mx-2 sm:max-w-md w-full transition ease-in-out sm:hover:scale-105 duration-500 hover:border border-gray-200">
+            <a href="/knowledge/linux/linux_awk_usage">
+            <div class="zine-cover relative mx-auto ">
+                    <img class="z-0 w-full max-h-52 md:max-h-56 object-cover" loading="lazy" src="/knowledge/static/zine-placeholder.svg" alt="awk 命令" />
+                </div>
+                <div class="m-3 text-xl text-black ">
+                    <div class="zine-card-title font-bold line-clamp-2">awk 命令</div>
+                    <div class="zine-card-date mt-2 text-base text-gray-500">2018-06-15</div>
+                </div>
+            </a>
+        </div>
+        <div
+            class="zine-card mt-8 sm:mx-2 sm:max-w-md w-full transition ease-in-out sm:hover:scale-105 duration-500 hover:border border-gray-200">
+            <a href="/knowledge/linux/linux_du_usage">
+            <div class="zine-cover relative mx-auto ">
+                    <img class="z-0 w-full max-h-52 md:max-h-56 object-cover" loading="lazy" src="/knowledge/static/zine-placeholder.svg" alt="du 命令" />
+                </div>
+                <div class="m-3 text-xl text-black ">
+                    <div class="zine-card-title font-bold line-clamp-2">du 命令</div>
+                    <div class="zine-card-date mt-2 text-base text-gray-500">2018-06-15</div>
+                </div>
+            </a>
+        </div>
+        <div
+            class="zine-card mt-8 sm:mx-2 sm:max-w-md w-full transition ease-in-out sm:hover:scale-105 duration-500 hover:border border-gray-200">
+            <a href="/knowledge/linux/linux_sed_usage">
+            <div class="zine-cover relative mx-auto ">
+                    <img class="z-0 w-full max-h-52 md:max-h-56 object-cover" loading="lazy" src="/knowledge/static/zine-placeholder.svg" alt="sed 命令" />
+                </div>
+                <div class="m-3 text-xl text-black ">
+                    <div class="zine-card-title font-bold line-clamp-2">sed 命令</div>
+                    <div class="zine-card-date mt-2 text-base text-gray-500">2018-06-15</div>
+                </div>
+            </a>
+        </div>
+        <div class="zine-button mt-8 sm:mx-2 flex w-full mx-auto">
+            <a href="/knowledge/linux" class="p-3 px-12 mx-auto my-8 bg-primary text-main text-sm font-bold rounded transition sm:hover:scale-110 duration-500">
+                View more
+            </a>
+        </div>
+    </div>
+</div>
+<div class="p-4 md:p-8 mx-4 my-6 bg-white shadow-xl shadow-slate-700/10 ring-1 ring-gray-900/5">
+    <div class="text-center m-8">
+        <a href="/knowledge/issue-1">
+            <div class="transition sm:hover:scale-110 duration-500">
+            <div class="mx-auto inline-block">
+    <span
+        class="zine-diamond text-2xl before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-primary relative block">
+        <div class="first-letter:text-4xl first-letter:font-bold relative text-main px-14">Issue 1</div>
+    </span>
+    </div>
+
+            </div>
+        </a>
+    </div>
+    <div class="flex flex-wrap flex-col sm:flex-row sm:justify-evenly items-center">
+        <div
+            class="zine-card mt-8 sm:mx-2 sm:max-w-md w-full transition ease-in-out sm:hover:scale-105 duration-500 hover:border border-gray-200">
+            <a href="/knowledge/issue-1/uml_class_diagram_relationships">
+            <div class="zine-cover relative mx-auto ">
+                    <img class="z-0 w-full max-h-52 md:max-h-56 object-cover" loading="lazy" src="/knowledge/static/zine-placeholder.svg" alt="UML类图关系" />
+                </div>
+                <div class="m-3 text-xl text-black ">
+                    <div class="zine-card-title font-bold line-clamp-2">UML类图关系</div>
+                    <div class="zine-card-date mt-2 text-base text-gray-500">2018-06-15</div>
+                </div>
+            </a>
+        </div>
+        <div
+            class="zine-card mt-8 sm:mx-2 sm:max-w-md w-full transition ease-in-out sm:hover:scale-105 duration-500 hover:border border-gray-200">
+            <a href="/knowledge/issue-1/nginx_basic_auth">
+            <div class="zine-cover relative mx-auto ">
+                    <img class="z-0 w-full max-h-52 md:max-h-56 object-cover" loading="lazy" src="/knowledge/static/zine-placeholder.svg" alt="Nginx Basic 认证" />
+                </div>
+                <div class="m-3 text-xl text-black ">
+                    <div class="zine-card-title font-bold line-clamp-2">Nginx Basic 认证</div>
+                    <div class="zine-card-date mt-2 text-base text-gray-500">2018-06-16</div>
+                </div>
+            </a>
+        </div>
+        <div
+            class="zine-card mt-8 sm:mx-2 sm:max-w-md w-full transition ease-in-out sm:hover:scale-105 duration-500 hover:border border-gray-200">
+            <a href="/knowledge/issue-1/file_line_ending">
+            <div class="zine-cover relative mx-auto ">
+                    <img class="z-0 w-full max-h-52 md:max-h-56 object-cover" loading="lazy" src="/knowledge/static/zine-placeholder.svg" alt="文件换行符" />
+                </div>
+                <div class="m-3 text-xl text-black ">
+                    <div class="zine-card-title font-bold line-clamp-2">文件换行符</div>
+                    <div class="zine-card-date mt-2 text-base text-gray-500">2018-06-17</div>
+                </div>
+            </a>
+        </div>
+        <div class="zine-button mt-8 sm:mx-2 flex w-full mx-auto">
+            <a href="/knowledge/issue-1" class="p-3 px-12 mx-auto my-8 bg-primary text-main text-sm font-bold rounded transition sm:hover:scale-110 duration-500">
+                View more
+            </a>
+        </div>
+    </div>
+</div>
+</main>
+    <footer class="relative">
+        <div class="bg-black text-white text-center p-16">
+            <div>
+                <a class="hover:underline" href="https://github.com/zineland/zine">Zine</a>
+                - a simple and opinionated tool to build your own magazine.
+            </div>
+        </div>
+        <a href="https://github.com/zineland"
+            class="absolute z-20 bottom-0 w-full text-center font-bold md:text-slate-100 md:opacity-10 md:hover:opacity-50 md:bg-transparent bg-primary p-2 text-main">
+            Proudly powered by Zine.
+        </a>
+    </footer>
+</body>
+<script src="/knowledge/static/medium-zoom.min.js"></script>
+<script src="/knowledge/static/zine.js"></script>
+</html>

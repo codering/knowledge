@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#2563eb">
+    <meta name="zine-version" content="0.15.0"/>
+    <title>DDD设计开发步骤</title>
+<meta name="description" content="以下主要是汤雪华老师在 Jdon 论坛发表的看法：
+DDD，领域建模是核心。
+以DDD为开发模式的设计开发步骤可以是：
+1）分析需求；
+2）画出用例图，系统中各个角色如何使用系统，也包括外部系统如何使用系统，也包括系统中到某个时间点自动启动的某些功能（此时角色就是时间）；
+3）针对各个用例图，就知道了系统使用的各种业务场景，同时也明确了系统的边界，从而就明确了领域模型的边界；
+4）在领域模型的边界">
+<meta property="og:type" content="website">
+<meta property="og:title" content="DDD设计开发步骤">
+<meta property="og:description" content="以下主要是汤雪华老师在 Jdon 论坛发表的看法：
+DDD，领域建模是核心。
+以DDD为开发模式的设计开发步骤可以是：
+1）分析需求；
+2）画出用例图，系统中各个角色如何使用系统，也包括外部系统如何使用系统，也包括系统中到某个时间点自动启动的某些功能（此时角色就是时间）；
+3）针对各个用例图，就知道了系统使用的各种业务场景，同时也明确了系统的边界，从而就明确了领域模型的边界；
+4）在领域模型的边界">
+<meta name="twitter:title" content="DDD设计开发步骤">
+<meta name="twitter:description" content="以下主要是汤雪华老师在 Jdon 论坛发表的看法：
+DDD，领域建模是核心。
+以DDD为开发模式的设计开发步骤可以是：
+1）分析需求；
+2）画出用例图，系统中各个角色如何使用系统，也包括外部系统如何使用系统，也包括系统中到某个时间点自动启动的某些功能（此时角色就是时间）；
+3）针对各个用例图，就知道了系统使用的各种业务场景，同时也明确了系统的边界，从而就明确了领域模型的边界；
+4）在领域模型的边界">
+<meta property="og:url" content="/knowledge/knowledge/ddd/ddd_steps">
+<meta property="twitter:url" content="/knowledge/knowledge/ddd/ddd_steps">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:image" content="/knowledge/knowledge/static/zine-placeholder.svg">
+<meta name="twitter:image" content="/knowledge/knowledge/static/zine-placeholder.svg">
+<link rel="canonical" href="/knowledge/ddd/ddd_steps">
+<link rel="icon" type="image/png" href="/favicon.ico">
+    <link rel="stylesheet" href="/knowledge/static/zine.css">
+    <link rel="alternate" type="application/atom+xml" title="tcptty RSS" href="/feed.xml">
+    <style>
+    :root {
+        --primary-color: #2563eb;
+        --main-color: #ffffff;
+        --link-color: #2563eb;
+        --secondary-color: #eff3f7;
+    }
+    </style>
+</head>
+
+<body class="h-full bg-secondary">
+    <div class="zine-header bg-primary text-main font-bold text-center z-0"
+        style="background-image: url('/knowledge/static/img/bg.jpg')">
+    <header class="p-8 md:p-10">
+            <div class="zine-brand text-4xl lg:text-5xl">
+                <a href="/knowledge/">tcptty</a>
+            </div>
+            <ul class="zine-menu">
+                <li class="inline-block mt-6 mx-5 text-base hover:underline">
+                    <a href="/knowledge/about">About</a>
+                </li>
+                <li class="inline-block mt-6 mx-5 text-base hover:underline">
+                    <a href="/knowledge/">Blog</a>
+                </li>
+                </ul>
+        </header>
+        <div class="zine-space w-full h-32 md:h-36 lg:h-44 xl:h-48 2xl:h-56"></div>
+    </div>
+    <main
+        class="pb-10 -translate-y-32 lg:-translate-y-36 xl:-translate-y-44 2xl:-translate-y-56 mx-auto sm:max-w-scree-md md:max-w-screen-lg">
+        <div class="px-4 pb-10 md:px-8 md:pb-14 mx-4 my-6 bg-white shadow-xl shadow-slate-700/10 ring-1 ring-gray-900/5">
+    <div
+        class="sticky z-10 py-4 top-32 lg:top-36 xl:top-44 2xl:top-56 bg-white border-dashed border-b border-slate-300">
+        <div class="ml-1 md:ml-2 flex justify-between items-center">
+            <div class="zine-breadcrumb">
+                <a class="zine-diamond before:block before:absolute before:-inset-1 before:-skew-x-6 before:bg-primary relative inline-block transition sm:hover:scale-110 duration-500" href="/knowledge/ddd">
+                    <div class="relative text-main px-4">领域驱动设计</div>
+                </a>
+                <span class="ml-2 text-gray-700">/ No. ⁨4⁩</span>
+            </div>
+            <div>
+                <div class="flex items-center">
+                    </div>
+                </div>
+        </div>
+    </div>
+    <div class="pt-10">
+        <div class="prose mx-auto">
+            <div class="zine-article-title text-2xl md:text-4xl font-extrabold leading-tight mb-8 text-center">
+                DDD设计开发步骤
+            </div>
+            <div class="flex items-center justify-between text-gray-500">
+                <span>2018-05-28</span>
+                <div class="flex items-center">
+    <span></span>
+    </div>
+
+            </div>
+            </div>
+        <article class="prose mx-auto my-12">
+            <p>以下主要是汤雪华老师在 Jdon 论坛发表的看法：</p>
+<p>DDD，领域建模是核心。</p>
+<p>以DDD为开发模式的设计开发步骤可以是：
+1）分析需求；</p>
+<p>2）画出用例图，系统中各个角色如何使用系统，也包括外部系统如何使用系统，也包括系统中到某个时间点自动启动的某些功能（此时角色就是时间）；</p>
+<p>3）针对各个用例图，就知道了系统使用的各种业务场景，同时也明确了系统的边界，从而就明确了领域模型的边界；</p>
+<p>4）在领域模型的边界内划分聚合，找出每个聚合的边界，找出边界内的聚合根，实体，值对象；这步是难点。这里一定不能混淆的一个概念是，领域建模不是以用户为中心的建模，而是以用户的需求为中心的建模。所以要努力寻找各种业务概念，切勿将所有行为都设计到User，Employee，Account，等对象上。而应该找出如Order，LeaveRecord，Payment，JobApplication，等业务概念。</p>
+<p>5）如果是根据经典的DDD领域建模，我们可以接下来分析一些领域服务，领域服务用于协调多个领域对象之间的行为；</p>
+<p>6）根据领域模型中的聚合根设计对应的仓储；这步完成就表示领域模型已经完成了。</p>
+<p>7）对照前面的需求用例，检查领域模型是否都可以满足用例中提到的各种业务场景；</p>
+<p>8）进一步分析领域模型，分析模型中哪些点是和特定系统相关的设计，哪些点可以进一步抽象出通用的领域模型，该通用领域模型可以满足此类相似系统的核心业务。比如积分系统中，可以抽象出“积分发放/消费”的模型。该模型可以在任何财务或积分系统中使用；</p>
+<p>9）现在，可以让有经验的人检查一下你设计的领域模型了，也就是如果有可能就进行一下模型Review，确保在写代码之前，模型的正确性。</p>
+<p>10）对领域模型进行单元测试，单元测试的时候，如果只想测试业务逻辑，可以设计Stub的仓储；如果想和持久化一起测试，那可以编写真实的仓储，如果你是用Hibernate来做数据存储，可以在此时建立ORM映射文件和数据库表；写完后，编写测试用例进行单元测试；</p>
+<p>11）最后实现你的UI层。但是为了让你的UI层可以不依赖于你的模型设计和测试，可以在UI层编写他自己需要的ViewModel，然后他在Web Form或Controller或View上只要访问ViewModel即可。等到你的领域模型完成并测试通过后，把领域模型的数据填充到ViewModel即可；</p>
+<p>差不多就是这个步骤吧，仅供参考。</p>
+
+        </article>
+        <div class="my-4 w-full border-dashed border-t border-slate-300"></div>
+        <div class="zine-navigate flex flex-col md:flex-row md:justify-between">
+            <a class="inline my-1 py-2 px-4 font-bold text-slate-700 hover:underline" href="/knowledge/ddd/aggregate_design">
+                Previous:
+                聚合的设计
+            </a>
+            <a class="inline my-1 py-2 px-4 font-bold text-slate-700 hover:underline" href="/knowledge/ddd/forum_domain_model">
+                Next:
+                领域模型实例分析之-论坛
+            </a>
+            </div>
+        </div>
+</div>
+<div
+    class="inline-link-card absolute hidden border rounded bg-white shadow-xl mx-2 w-96 transition ease-in-out sm:hover:scale-105 duration-500">
+    <a class="inline-link-url">
+        <div class="">
+            <img class="inline-link-image w-full h-52 object-cover rounded-t">
+            <div class="inline-link-title font-bold p-4 line-clamp-2"></div>
+        </div>
+    </a>
+</div>
+</main>
+    <footer class="relative">
+        <div class="bg-black text-white text-center p-16">
+            <div>
+                <a class="hover:underline" href="https://github.com/zineland/zine">Zine</a>
+                - a simple and opinionated tool to build your own magazine.
+            </div>
+        </div>
+        <a href="https://github.com/zineland"
+            class="absolute z-20 bottom-0 w-full text-center font-bold md:text-slate-100 md:opacity-10 md:hover:opacity-50 md:bg-transparent bg-primary p-2 text-main">
+            Proudly powered by Zine.
+        </a>
+    </footer>
+</body>
+<script src="/knowledge/static/medium-zoom.min.js"></script>
+<script src="/knowledge/static/zine.js"></script>
+</html>
